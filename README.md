@@ -39,9 +39,13 @@ npm run build      # writes static site to ./dist
 npm run preview    # serves ./dist on http://localhost:4321
 ```
 
-## Deploy
+## Live site (GitHub Pages)
 
-Push to `main` and the included [GitHub Actions workflow](.github/workflows/deploy.yml) builds and deploys to GitHub Pages.
+Open this on phone or desktop:
+
+**https://revanthkumarreddy.github.io/freshmangoes.in-portal/**
+
+If it 404s for a few minutes, wait for the **Deploy to GitHub Pages** Action to finish, then refresh.
 
 ### One-time setup on GitHub
 

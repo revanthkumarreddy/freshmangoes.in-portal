@@ -30,8 +30,8 @@ jobs:
           # Public Wix Headless OAuth Client ID — safe to hardcode (browser-visible, no secret)
           # Wix site: https://revanthkumarha.wixsite.com/my-site-4
           PUBLIC_WIX_CLIENT_ID: 78f72bb8-e7ac-4945-acc2-b2c119855015
-          SITE_URL: https://harshithsunku.github.io
-          BASE_PATH: /freshmangoes-web
+          SITE_URL: https://revanthkumarreddy.github.io
+          BASE_PATH: /freshmangoes.in-portal
         run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
