@@ -4,16 +4,16 @@ import { url } from '~/lib/url';
 ---
 <Base title="Thank you — FreshMangoes" noindex>
   <section class="container-x py-24 text-center max-w-2xl mx-auto">
-    <div class="text-6xl mb-6">🥭</div>
-    <h1 class="display text-5xl md:text-6xl">Thank you!</h1>
-    <p class="mt-5 text-lg opacity-80 leading-relaxed">
+    <p class="eyebrow mb-4">Order received</p>
+    <h1 class="display text-5xl md:text-6xl">Thank you.</h1>
+    <p class="mt-5 text-lg text-[color:var(--color-ink-soft)] leading-relaxed">
       Your mangoes are on their way to being picked. We'll send a confirmation email shortly with
       tracking once your box leaves the orchard.
     </p>
-    <p id="order-ref" class="mt-6 text-sm opacity-70"></p>
+    <p id="order-ref" class="mt-6 text-sm text-[color:var(--color-ink-soft)]"></p>
     <div class="mt-10 flex justify-center gap-3 flex-wrap">
       <a href={url('/')} class="btn btn-ghost">Back to home</a>
-      <a href={url('/shop')} class="btn btn-saffron">Shop more</a>
+      <a href={url('/shop')} class="btn btn-primary">Shop more</a>
     </div>
   </section>
 
@@ -24,7 +24,6 @@ import { url } from '~/lib/url';
       const el = document.getElementById('order-ref');
       if (el) el.textContent = `Order reference: ${id}`;
     }
-    // Clear local cart token cache so the next visit starts fresh.
-    try { window.localStorage.removeItem('wix:tokens'); } catch {}
+    try { window.localStorage.removeItem('fm:checkout_done'); } catch {}
   </script>
 </Base>

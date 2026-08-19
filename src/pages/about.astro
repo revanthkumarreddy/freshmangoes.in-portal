@@ -3,11 +3,12 @@ import Base from '~/layouts/Base.astro';
 import { url } from '~/lib/url';
 ---
 <Base title="Our farm — FreshMangoes" description="The story of our family orchard in Srinivasapur, Karnataka — forty years of patient mango farming.">
-  <section class="relative bg-[color:var(--color-leaf-700)] text-[color:var(--color-cream)]">
-    <div class="container-x py-24 lg:py-32">
-      <p class="eyebrow !text-[color:var(--color-saffron-300)] mb-4">Our Farm</p>
+  <section class="relative min-h-[52vh] overflow-hidden bg-[color:var(--color-leaf-700)] text-[color:var(--color-cream)]">
+    <div class="absolute inset-0 opacity-30 bg-[radial-gradient(ellipse_at_30%_20%,rgba(201,148,42,0.45),transparent_55%)]"></div>
+    <div class="relative container-x py-24 lg:py-32">
+      <p class="display text-4xl md:text-5xl mb-4 text-[color:var(--color-saffron-300)]">FreshMangoes</p>
       <h1 class="display text-5xl md:text-7xl max-w-3xl leading-[1.02]">
-        A family orchard, in Srinivasapur, Kolar.
+        A family orchard in Srinivasapur, Kolar — since 1985.
       </h1>
     </div>
   </section>
@@ -15,16 +16,16 @@ import { url } from '~/lib/url';
   <section class="container-x py-20 grid lg:grid-cols-[1fr_1.2fr] gap-12">
     <div class="display text-3xl md:text-4xl leading-tight">
       "Patience is the most important ingredient. The mango decides when it's ready — we just listen."
-      <p class="text-base font-sans not-italic opacity-70 mt-6">— our grandfather, 1985</p>
+      <p class="text-base font-sans not-italic text-[color:var(--color-ink-soft)] mt-6">— our grandfather, 1985</p>
     </div>
-    <div class="space-y-5 text-base md:text-lg leading-relaxed opacity-90">
+    <div class="space-y-5 text-base md:text-lg leading-relaxed text-[color:var(--color-ink-soft)]">
       <p>
         In 1985, our family planted the first hundred grafted Alphonso saplings on a quiet patch of
         land in Srinivasapur, where the red soil holds the heat just so and the night air keeps
         the mangoes sweet.
       </p>
       <p>
-        Two decades on, the orchard has grown — Banganpalli for the season's first sweetness,
+        Four decades on, the orchard has grown — Banganpalli for the season's first sweetness,
         Mallika for its perfume, Totapuri for the slow-cooked summer kitchen, and our heirloom
         Sendura that you won't find in many markets. Every tree has a name.
       </p>
@@ -35,31 +36,32 @@ import { url } from '~/lib/url';
       </p>
       <p>
         FreshMangoes is the small online side of a family business — built so you can taste what we taste,
-        at the breakfast table. Every box we pack carries the warmth of our summers, the sweet nostalgia of our own childhoods, and a simple, heartfelt promise: to share the pure, unhurried joy of a perfect mango with you and your loved ones.
+        at the breakfast table. Every box we pack carries the warmth of our summers and a simple promise:
+        the unhurried joy of a perfect mango.
       </p>
     </div>
   </section>
 
-  <section class="bg-[color:var(--color-saffron-50)]">
+  <section class="border-y border-black/8 bg-white/40">
     <div class="container-x py-16 grid md:grid-cols-3 gap-8 text-center">
       <div>
         <div class="display text-6xl">1985</div>
-        <p class="mt-2 text-sm opacity-70 uppercase tracking-wider">First trees</p>
+        <p class="mt-2 text-sm text-[color:var(--color-ink-soft)] uppercase tracking-wider">First trees</p>
       </div>
       <div>
         <div class="display text-6xl">10</div>
-        <p class="mt-2 text-sm opacity-70 uppercase tracking-wider">Mango varieties</p>
+        <p class="mt-2 text-sm text-[color:var(--color-ink-soft)] uppercase tracking-wider">Mango varieties</p>
       </div>
       <div>
         <div class="display text-6xl">24h</div>
-        <p class="mt-2 text-sm opacity-70 uppercase tracking-wider">From farm to box</p>
+        <p class="mt-2 text-sm text-[color:var(--color-ink-soft)] uppercase tracking-wider">From farm to box</p>
       </div>
     </div>
   </section>
 
   <section class="container-x py-20 text-center">
     <h2 class="display text-4xl md:text-5xl mb-4">Taste the season.</h2>
-    <p class="opacity-70 max-w-xl mx-auto mb-8">Most varieties peak between April and July. Shop now to claim yours from this year's harvest.</p>
-    <a href={url('/shop')} class="btn btn-saffron">Browse the harvest →</a>
+    <p class="text-[color:var(--color-ink-soft)] max-w-xl mx-auto mb-8">Most varieties peak between April and July. Shop now to claim yours from this year's harvest.</p>
+    <a href={url('/shop')} class="btn btn-saffron">Browse the harvest</a>
   </section>
 </Base>

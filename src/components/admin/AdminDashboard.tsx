@@ -1,54 +1,37 @@
 import { useState, useEffect } from 'react';
+import { clearAdminSession, isAdminSessionValid } from '~/lib/admin-auth';
 
 const BASE = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
 
-// Generate some realistic sample data to demonstrate the admin capabilities
+/** Anonymized demo rows only — never real customer PII */
 const MOCK_ORDERS = [
   {
-    id: 'ORD-8921-X',
-    customer: 'Aarav Patel',
-    email: 'aarav.p@example.com',
-    date: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(), // 2 hours ago
+    id: 'ORD-DEMO-01',
+    customer: 'Customer A',
+    email: 'hidden@example.com',
+    date: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(),
     total: 1800,
     items: 2,
-    status: 'NOT_FULFILLED', // Processing
+    status: 'NOT_FULFILLED',
   },
   {
-    id: 'ORD-8920-Y',
-    customer: 'Priya Sharma',
-    email: 'priya.s@example.com',
-    date: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(), // 1 day ago
+    id: 'ORD-DEMO-02',
+    customer: 'Customer B',
+    email: 'hidden@example.com',
+    date: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(),
     total: 4500,
     items: 5,
-    status: 'FULFILLED', // Shipped
+    status: 'FULFILLED',
   },
   {
-    id: 'ORD-8919-Z',
-    customer: 'Vikram Singh',
-    email: 'vikram.s@example.com',
-    date: new Date(Date.now() - 1000 * 60 * 60 * 48).toISOString(), // 2 days ago
+    id: 'ORD-DEMO-03',
+    customer: 'Customer C',
+    email: 'hidden@example.com',
+    date: new Date(Date.now() - 1000 * 60 * 60 * 48).toISOString(),
     total: 900,
     items: 1,
     status: 'NOT_FULFILLED',
   },
-  {
-    id: 'ORD-8918-A',
-    customer: 'Neha Gupta',
-    email: 'neha.g@example.com',
-    date: new Date(Date.now() - 1000 * 60 * 60 * 72).toISOString(), // 3 days ago
-    total: 2700,
-    items: 3,
-    status: 'CANCELED',
-  },
-  {
-    id: 'ORD-8917-B',
-    customer: 'Rahul Desai',
-    email: 'rahul.d@example.com',
-    date: new Date(Date.now() - 1000 * 60 * 60 * 96).toISOString(), // 4 days ago
-    total: 3600,
-    items: 4,
-    status: 'FULFILLED',
-  }
 ];
 
 const STATUS_BADGES: Record<string, { bg: string; text: string; label: string }> = {
@@ -66,33 +49,26 @@ export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<'overview' | 'orders'>('overview');
   const [orders, setOrders] = useState(MOCK_ORDERS);
 
-  // Auth Guard
+  // Auth Guard — session token with expiry (not a boolean flag)
   useEffect(() => {
-    if (localStorage.getItem('fm:admin_auth') !== 'true') {
+    try { localStorage.removeItem('fm:admin_auth'); } catch {}
+    if (!isAdminSessionValid()) {
       window.location.replace(`${BASE}/admin/login`);
-    } else {
-      setAuthChecked(true);
-      // Load saved orders from local storage if any, else use mock
-      const saved = localStorage.getItem('fm:admin_orders');
-      if (saved) {
-        try { setOrders(JSON.parse(saved)); } catch {}
-      } else {
-        localStorage.setItem('fm:admin_orders', JSON.stringify(MOCK_ORDERS));
-      }
+      return;
     }
+    setAuthChecked(true);
+    setOrders(MOCK_ORDERS);
   }, []);
 
-  if (!authChecked) return null; // Prevent flash of content
+  if (!authChecked) return null;
 
   const handleLogout = () => {
-    localStorage.removeItem('fm:admin_auth');
+    clearAdminSession();
     window.location.replace(`${BASE}/admin/login`);
   };
 
   const updateOrderStatus = (id: string, newStatus: string) => {
-    const updated = orders.map(o => o.id === id ? { ...o, status: newStatus } : o);
-    setOrders(updated);
-    localStorage.setItem('fm:admin_orders', JSON.stringify(updated));
+    setOrders(orders.map(o => o.id === id ? { ...o, status: newStatus } : o));
   };
 
   // KPIs

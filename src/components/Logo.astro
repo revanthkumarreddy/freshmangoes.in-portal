@@ -1,0 +1,18 @@
+---
+interface Props {
+  tone?: 'ink' | 'cream';
+  class?: string;
+}
+const { tone = 'ink', class: className = '' } = Astro.props;
+const fill = tone === 'cream' ? 'var(--color-cream)' : 'var(--color-ink)';
+const leaf = 'var(--color-leaf-500)';
+const mango = 'var(--color-saffron-400)';
+---
+<span class:list={['inline-flex items-center gap-2.5', className]} aria-hidden="true">
+  <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 5c4.2 0 9.2 2.1 11.2 7.1 2 5-1.2 12.2-7.2 15.1S6.8 28.5 4.6 24.2 5.2 12.5 8.4 8.6 12.6 5 16 5z" fill={mango}/>
+    <path d="M14.2 6.2c2.1-1.1 5.2-1.2 7.4-.2-2.8.1-5.2 1-7.4.2z" fill={leaf}/>
+    <circle cx="13.5" cy="15.5" r="1.4" fill={fill} opacity="0.18"/>
+  </svg>
+  <span class="display text-2xl tracking-tight leading-none" style={`color: ${fill}`}>FreshMangoes</span>
+</span>

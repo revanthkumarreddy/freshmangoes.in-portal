@@ -1,62 +1,68 @@
 ---
 import AdminLayout from '~/layouts/AdminLayout.astro';
-import { url } from '~/lib/url';
 ---
 <AdminLayout title="Admin Control Center Login">
   <div class="admin-login-wrapper">
     <div class="admin-login-card">
       <div class="admin-login-header">
-        <span class="admin-login-icon">🔒</span>
         <h1 class="admin-login-title">Control Center</h1>
-        <p class="admin-login-subtitle">FreshMangoes Operations</p>
+        <p class="admin-login-subtitle">Authorized staff only · FreshMangoes</p>
       </div>
 
-      <form id="admin-login-form" class="admin-login-form">
+      <form id="admin-login-form" class="admin-login-form" autocomplete="off">
         <div class="form-group">
           <label for="admin-email">Admin Email</label>
-          <input type="email" id="admin-email" placeholder="admin@freshmangoes.com" required autocomplete="email" />
-        </div>
-        
-        <div class="form-group">
-          <label for="admin-passcode">Master Passcode</label>
-          <input type="password" id="admin-passcode" placeholder="••••••••" required />
+          <input type="email" id="admin-email" placeholder="staff@example.com" required autocomplete="username" maxlength="120" />
         </div>
 
-        <button type="submit" class="admin-login-btn">
+        <div class="form-group">
+          <label for="admin-passcode">Passcode</label>
+          <input type="password" id="admin-passcode" placeholder="••••••••" required autocomplete="current-password" maxlength="128" />
+        </div>
+
+        <button type="submit" class="admin-login-btn" id="admin-submit">
           Access Dashboard
         </button>
 
-        <p id="admin-error" class="admin-error-msg hidden"></p>
+        <p id="admin-error" class="admin-error-msg hidden" role="alert"></p>
+        <p class="admin-hint">Orders &amp; payments are managed in the Wix dashboard. This panel is an internal demo view only.</p>
       </form>
     </div>
   </div>
 
   <script>
+    import { isAdminSessionValid, tryAdminLogin } from '~/lib/admin-auth';
+
     document.addEventListener('DOMContentLoaded', () => {
       const BASE = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
       const form = document.getElementById('admin-login-form');
       const errorMsg = document.getElementById('admin-error');
+      const submitBtn = document.getElementById('admin-submit') as HTMLButtonElement | null;
 
-      // Check if already authenticated as admin
-      if (localStorage.getItem('fm:admin_auth') === 'true') {
+      if (isAdminSessionValid()) {
         window.location.replace(`${BASE}/admin`);
+        return;
       }
 
-      form?.addEventListener('submit', (e) => {
+      // Clear legacy insecure flag
+      try { localStorage.removeItem('fm:admin_auth'); } catch {}
+
+      form?.addEventListener('submit', async (e) => {
         e.preventDefault();
+        if (submitBtn) submitBtn.disabled = true;
         const email = (document.getElementById('admin-email') as HTMLInputElement)?.value;
         const passcode = (document.getElementById('admin-passcode') as HTMLInputElement)?.value;
 
-        // Hardcoded simple admin auth for demonstration
-        if (email === 'admin@freshmangoes.com' && passcode === 'admin2026') {
-          localStorage.setItem('fm:admin_auth', 'true');
+        const result = await tryAdminLogin(email, passcode);
+        if (result.ok) {
           window.location.replace(`${BASE}/admin`);
-        } else {
-          if (errorMsg) {
-            errorMsg.textContent = 'Invalid credentials. Access denied.';
-            errorMsg.classList.remove('hidden');
-          }
+          return;
         }
+        if (errorMsg) {
+          errorMsg.textContent = result.error || 'Access denied.';
+          errorMsg.classList.remove('hidden');
+        }
+        if (submitBtn) submitBtn.disabled = false;
       });
     });
   </script>
@@ -67,97 +73,44 @@ import { url } from '~/lib/url';
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      background: radial-gradient(circle at center, #18181b 0%, #09090b 100%);
+      background: #09090b;
+      padding: 1.25rem;
     }
     .admin-login-card {
       background: #18181b;
       border: 1px solid #27272a;
       border-radius: 12px;
-      padding: 3rem 2.5rem;
+      padding: 2.5rem 2rem;
       width: 100%;
       max-width: 400px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     }
-    .admin-login-header {
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
-    .admin-login-icon {
-      font-size: 2.5rem;
-      display: inline-block;
-      margin-bottom: 1rem;
-    }
+    .admin-login-header { text-align: center; margin-bottom: 2rem; }
     .admin-login-title {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #fafafa;
-      margin: 0 0 0.25rem 0;
-      letter-spacing: -0.02em;
+      font-size: 1.5rem; font-weight: 600; color: #fafafa; margin: 0 0 0.25rem;
     }
-    .admin-login-subtitle {
-      font-size: 0.85rem;
-      color: #a1a1aa;
-      margin: 0;
-    }
-    .admin-login-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
+    .admin-login-subtitle { font-size: 0.85rem; color: #a1a1aa; margin: 0; }
+    .admin-login-form { display: flex; flex-direction: column; gap: 1.25rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
     .form-group label {
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: #d4d4d8;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      font-size: 0.75rem; font-weight: 500; color: #d4d4d8;
+      text-transform: uppercase; letter-spacing: 0.05em;
     }
     .form-group input {
-      background: #09090b;
-      border: 1px solid #27272a;
-      border-radius: 6px;
-      padding: 0.75rem 1rem;
-      color: #fafafa;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
-      outline: none;
-      transition: border-color 0.2s;
+      background: #09090b; border: 1px solid #27272a; border-radius: 6px;
+      padding: 0.75rem 1rem; color: #fafafa; font-size: 16px; outline: none;
     }
-    .form-group input:focus {
-      border-color: #eab308;
-    }
+    .form-group input:focus { border-color: #eab308; }
     .admin-login-btn {
-      background: #fafafa;
-      color: #09090b;
-      border: none;
-      border-radius: 6px;
-      padding: 0.85rem;
-      font-weight: 600;
-      font-size: 0.9rem;
-      cursor: pointer;
-      margin-top: 0.5rem;
-      transition: background 0.2s;
+      background: #fafafa; color: #09090b; border: none; border-radius: 6px;
+      padding: 0.85rem; font-weight: 600; font-size: 0.9rem; cursor: pointer;
     }
-    .admin-login-btn:hover {
-      background: #e4e4e7;
-    }
+    .admin-login-btn:disabled { opacity: 0.6; cursor: not-allowed; }
     .admin-error-msg {
-      color: #ef4444;
-      font-size: 0.8rem;
-      text-align: center;
-      margin: 0;
-      padding: 0.75rem;
-      background: rgba(239, 68, 68, 0.1);
-      border: 1px solid rgba(239, 68, 68, 0.2);
-      border-radius: 6px;
+      color: #ef4444; font-size: 0.8rem; text-align: center; margin: 0;
+      padding: 0.75rem; background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 6px;
     }
-    .hidden {
-      display: none !important;
-    }
+    .admin-hint { font-size: 0.72rem; color: #71717a; text-align: center; line-height: 1.45; margin: 0; }
+    .hidden { display: none !important; }
   </style>
 </AdminLayout>

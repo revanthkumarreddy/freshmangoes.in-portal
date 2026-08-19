@@ -1,17 +1,17 @@
 ---
 import { url } from '~/lib/url';
+import Logo from '~/components/Logo.astro';
 const year = new Date().getFullYear();
 ---
 <footer class="mt-24 bg-[color:var(--color-ink)] text-[color:var(--color-cream)]">
   <div class="container-x py-16 grid gap-12 md:grid-cols-5">
     <div class="md:col-span-2">
-      <div class="flex items-center gap-2 mb-4">
-        <span class="text-2xl" aria-hidden="true">🥭</span>
-        <span class="display text-2xl">FreshMangoes</span>
+      <div class="mb-4">
+        <Logo tone="cream" />
       </div>
       <p class="text-sm opacity-80 max-w-sm leading-relaxed">
-        Hand-picked, natural ripening & carbide free mangoes from our family orchard in Srinivasapur, Karnataka.
-        Forty years of farming heritage in every box.
+        Hand-picked, natural ripening &amp; carbide-free mangoes from our family orchard in Srinivasapur, Karnataka.
+        Farming heritage since 1985 — in every box.
       </p>
       <p class="text-xs opacity-60 mt-6">Free shipping across India on orders over ₹599.</p>
     </div>
@@ -42,13 +42,14 @@ const year = new Date().getFullYear();
         <li>Karnataka, India</li>
         <li class="mt-2"><a href="mailto:freshmangoes.in@gmail.com" class="hover:text-[color:var(--color-saffron-300)] font-medium">freshmangoes.in@gmail.com</a></li>
         <li><a href="tel:+919844763416" class="hover:text-[color:var(--color-saffron-300)] font-medium">Helpline: +91 9844763416</a></li>
+        <li><a href="https://wa.me/919844763416" class="hover:text-[color:var(--color-saffron-300)] font-medium">WhatsApp us</a></li>
       </ul>
     </div>
   </div>
   <div class="border-t border-white/10">
     <div class="container-x py-6 text-xs opacity-70 flex flex-col md:flex-row gap-2 md:justify-between">
       <span>© {year} FreshMangoes. All rights reserved.</span>
-      <span>Built with care · Powered by freshmangoes.in</span>
+      <span>Grown in Srinivasapur · Delivered across India</span>
     </div>
   </div>
 </footer>

@@ -2,6 +2,7 @@
 import Base from '~/layouts/Base.astro';
 import { url } from '~/lib/url';
 import AddToCart from '~/components/AddToCart';
+import ProductGallery from '~/components/ProductGallery';
 import {
   fetchAllProducts,
   fetchProductBySlug,
@@ -11,6 +12,7 @@ import {
   variantsOf,
 } from '~/lib/catalog';
 import PincodeChecker from '~/components/PincodeChecker';
+import { sanitizeHtml, stripHtml } from '~/lib/sanitize';
 
 export async function getStaticPaths() {
   const products = await fetchAllProducts();
@@ -28,8 +30,9 @@ const mainImage = primaryImage(product);
 const variants = variantsOf(product);
 const { price } = priceOf(product);
 
-const descHtml: string = (product as any).description || '';
-const descText = descHtml.replace(/<[^>]+>/g, '').trim();
+const descHtmlRaw: string = (product as any).description || '';
+const descHtml = sanitizeHtml(descHtmlRaw);
+const descText = stripHtml(descHtmlRaw);
 
 const jsonLd = {
   '@context': 'https://schema.org/',
@@ -56,54 +59,53 @@ const jsonLd = {
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </Fragment>
 
-  <nav class="container-x pt-6 text-xs opacity-70">
-    <a href={url('/')} class="hover:opacity-100">Home</a> ·
-    <a href={url('/shop')} class="hover:opacity-100"> Shop</a> ·
-    <span class="opacity-90"> {product.name}</span>
+  <nav class="container-x pt-6 text-xs text-[color:var(--color-ink-soft)]">
+    <a href={url('/')} class="hover:text-[color:var(--color-ink)]">Home</a>
+    <span class="mx-1.5 opacity-50">/</span>
+    <a href={url('/shop')} class="hover:text-[color:var(--color-ink)]">Shop</a>
+    <span class="mx-1.5 opacity-50">/</span>
+    <span class="text-[color:var(--color-ink)]">{product.name}</span>
   </nav>
 
-  <section class="container-x py-10 grid lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-16 items-start">
-    <div>
-      <div class="aspect-[4/5] rounded-3xl overflow-hidden bg-[color:var(--color-saffron-100)] shadow-lg">
-        <img src={mainImage} alt={product.name ?? ''} class="w-full h-full object-cover" />
-      </div>
-      {gallery.length > 1 && (
-        <div class="mt-3 grid grid-cols-5 gap-2">
-          {gallery.slice(0, 5).map(g => (
-            <div class="aspect-square rounded-xl overflow-hidden bg-[color:var(--color-saffron-100)]">
-              <img src={g} alt="" class="w-full h-full object-cover" loading="lazy" />
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+  <section class="container-x py-10 pb-40 sm:pb-10 grid lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-16 items-start">
+    <ProductGallery client:load images={gallery.length ? gallery : [mainImage]} alt={product.name ?? ''} />
 
     <div class="lg:sticky lg:top-24">
-      <p class="eyebrow mb-3">FreshMangoes · Hand-picked</p>
+      <p class="eyebrow mb-3">Hand-picked · Srinivasapur</p>
       <h1 class="display text-4xl md:text-5xl tracking-tight leading-[1.05]">{product.name}</h1>
       {descText && (
-        <p class="mt-4 text-base opacity-80 leading-relaxed max-w-prose">{descText.slice(0, 220)}</p>
+        <p class="mt-4 text-base text-[color:var(--color-ink-soft)] leading-relaxed max-w-prose">{descText.slice(0, 220)}</p>
       )}
 
-      <div class="mt-8 p-4 sm:p-6 rounded-2xl bg-white border border-black/5 shadow-sm">
+      <div class="mt-8 py-6 border-y border-black/8">
         <AddToCart client:load productId={product._id!} productName={product.name ?? ''} variants={variants} />
-        <PincodeChecker client:load />
+        <div class="mt-6">
+          <PincodeChecker client:load />
+        </div>
+        <a
+          href="https://wa.me/919844763416"
+          class="mt-4 inline-flex text-sm font-medium text-[color:var(--color-leaf-600)] hover:text-[color:var(--color-leaf-700)]"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Need help choosing? WhatsApp us →
+        </a>
       </div>
 
-      <details class="mt-6 group rounded-2xl border border-black/10">
-        <summary class="cursor-pointer list-none flex items-center justify-between p-5 font-medium">
+      <details class="mt-6 group border-b border-black/10">
+        <summary class="cursor-pointer list-none flex items-center justify-between py-4 font-medium">
           About this mango
-          <span class="transition-transform group-open:rotate-180" aria-hidden="true">▾</span>
+          <span class="transition-transform group-open:rotate-180 text-[color:var(--color-ink-soft)]" aria-hidden="true">▾</span>
         </summary>
-        <div class="px-5 pb-5 text-sm opacity-80 leading-relaxed" set:html={descHtml} />
+        <div class="pb-5 text-sm text-[color:var(--color-ink-soft)] leading-relaxed" set:html={descHtml} />
       </details>
 
-      <details class="mt-3 group rounded-2xl border border-black/10">
-        <summary class="cursor-pointer list-none flex items-center justify-between p-5 font-medium">
+      <details class="group border-b border-black/10">
+        <summary class="cursor-pointer list-none flex items-center justify-between py-4 font-medium">
           Shipping &amp; freshness
-          <span class="transition-transform group-open:rotate-180" aria-hidden="true">▾</span>
+          <span class="transition-transform group-open:rotate-180 text-[color:var(--color-ink-soft)]" aria-hidden="true">▾</span>
         </summary>
-        <div class="px-5 pb-5 text-sm opacity-80 leading-relaxed space-y-2">
+        <div class="pb-5 text-sm text-[color:var(--color-ink-soft)] leading-relaxed space-y-2">
           <p>Picked, weighed and packed within 24 hours of your order.</p>
           <p>Standard delivery ₹99 · Free over ₹599 · Express ₹199.</p>
           <p>If a single mango arrives bruised, write to us — we'll make it right.</p>

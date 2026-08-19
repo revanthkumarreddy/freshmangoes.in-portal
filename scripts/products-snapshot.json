@@ -1,0 +1,1339 @@
+[
+  {
+    "name": "Neelam",
+    "slug": "neelam",
+    "visible": true,
+    "productType": "physical",
+    "description": "<p>The late-season classic. Smooth golden flesh with a delicate floral sweetness. Arrives when most mangoes are gone.</p>",
+    "stock": {
+      "trackInventory": true,
+      "quantity": 100,
+      "inStock": true,
+      "inventoryStatus": "IN_STOCK"
+    },
+    "price": {
+      "currency": "INR",
+      "price": 459,
+      "discountedPrice": 459,
+      "formatted": {
+        "price": "₹459.00",
+        "discountedPrice": "₹459.00"
+      }
+    },
+    "priceData": {
+      "currency": "INR",
+      "price": 459,
+      "discountedPrice": 459,
+      "formatted": {
+        "price": "₹459.00",
+        "discountedPrice": "₹459.00"
+      }
+    },
+    "convertedPriceData": {
+      "currency": "INR",
+      "price": 459,
+      "discountedPrice": 459,
+      "formatted": {
+        "price": "₹459.00",
+        "discountedPrice": "₹459.00"
+      }
+    },
+    "additionalInfoSections": [],
+    "ribbons": [],
+    "media": {
+      "mainMedia": {
+        "thumbnail": {
+          "url": "https://static.wixstatic.com/media/d31ffb_09f19f01ded74113b9e90ed4d4d0a7e1~mv2.jpg/v1/fit/w_50,h_50,q_90/file.jpg",
+          "width": 50,
+          "height": 50,
+          "altText": "Neelam - Farm Fresh"
+        },
+        "mediaType": "image",
+        "title": "photo-1553279768-865429fa0078.jpg",
+        "image": {
+          "url": "https://static.wixstatic.com/media/d31ffb_09f19f01ded74113b9e90ed4d4d0a7e1~mv2.jpg",
+          "width": 800,
+          "height": 800,
+          "altText": "Neelam - Farm Fresh"
+        },
+        "_id": "d31ffb_09f19f01ded74113b9e90ed4d4d0a7e1~mv2.jpg"
+      },
+      "items": [
+        {
+          "thumbnail": {
+            "url": "https://static.wixstatic.com/media/d31ffb_09f19f01ded74113b9e90ed4d4d0a7e1~mv2.jpg/v1/fit/w_50,h_50,q_90/file.jpg",
+            "width": 50,
+            "height": 50,
+            "altText": "Neelam - Farm Fresh"
+          },
+          "mediaType": "image",
+          "title": "photo-1553279768-865429fa0078.jpg",
+          "image": {
+            "url": "https://static.wixstatic.com/media/d31ffb_09f19f01ded74113b9e90ed4d4d0a7e1~mv2.jpg",
+            "width": 800,
+            "height": 800,
+            "altText": "Neelam - Farm Fresh"
+          },
+          "_id": "d31ffb_09f19f01ded74113b9e90ed4d4d0a7e1~mv2.jpg"
+        }
+      ]
+    },
+    "customTextFields": [],
+    "manageVariants": true,
+    "productOptions": [
+      {
+        "optionType": "drop_down",
+        "name": "Weight",
+        "choices": [
+          {
+            "value": "1 kg",
+            "description": "1 kg",
+            "inStock": true,
+            "visible": true
+          },
+          {
+            "value": "3 kg",
+            "description": "3 kg",
+            "inStock": true,
+            "visible": true
+          },
+          {
+            "value": "5 kg",
+            "description": "5 kg",
+            "inStock": true,
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "productPageUrl": {
+      "base": "https://harshithsunku.wixstudio.com/freshmangos-new",
+      "path": "/product-page/neelam"
+    },
+    "numericId": "1780161480048007",
+    "inventoryItemId": "d4776e02-c160-4664-a331-6a93b99d843a",
+    "discount": {
+      "type": "NONE",
+      "value": 0
+    },
+    "collectionIds": [
+      "9032cae6-35ee-4851-a63e-739fbf667fe1"
+    ],
+    "variants": [
+      {
+        "choices": {
+          "Weight": "1 kg"
+        },
+        "variant": {
+          "priceData": {
+            "currency": "INR",
+            "price": 459,
+            "discountedPrice": 459,
+            "formatted": {
+              "price": "₹459.00",
+              "discountedPrice": "₹459.00"
+            }
+          },
+          "convertedPriceData": {
+            "currency": "INR",
+            "price": 459,
+            "discountedPrice": 459,
+            "formatted": {
+              "price": "₹459.00",
+              "discountedPrice": "₹459.00"
+            }
+          },
+          "weight": 0,
+          "sku": "",
+          "visible": true
+        },
+        "stock": {
+          "trackQuantity": true,
+          "quantity": 50,
+          "inStock": true
+        },
+        "_id": "298ea766-ab8e-40e6-a1a5-98c65a7c3662"
+      },
+      {
+        "choices": {
+          "Weight": "3 kg"
+        },
+        "variant": {
+          "priceData": {
+            "currency": "INR",
+            "price": 1285.2,
+            "discountedPrice": 1285.2,
+            "formatted": {
+              "price": "₹1,285.20",
+              "discountedPrice": "₹1,285.20"
+            }
+          },
+          "convertedPriceData": {
+            "currency": "INR",
+            "price": 1285.2,
+            "discountedPrice": 1285.2,
+            "formatted": {
+              "price": "₹1,285.20",
+              "discountedPrice": "₹1,285.20"
+            }
+          },
+          "weight": 0,
+          "sku": "",
+          "visible": true
+        },
+        "stock": {
+          "trackQuantity": true,
+          "quantity": 30,
+          "inStock": true
+        },
+        "_id": "ffe34fb8-29a5-4e76-85f5-ba80b7ce46a2"
+      },
+      {
+        "choices": {
+          "Weight": "5 kg"
+        },
+        "variant": {
+          "priceData": {
+            "currency": "INR",
+            "price": 2065.5,
+            "discountedPrice": 2065.5,
+            "formatted": {
+              "price": "₹2,065.50",
+              "discountedPrice": "₹2,065.50"
+            }
+          },
+          "convertedPriceData": {
+            "currency": "INR",
+            "price": 2065.5,
+            "discountedPrice": 2065.5,
+            "formatted": {
+              "price": "₹2,065.50",
+              "discountedPrice": "₹2,065.50"
+            }
+          },
+          "weight": 0,
+          "sku": "",
+          "visible": true
+        },
+        "stock": {
+          "trackQuantity": true,
+          "quantity": 20,
+          "inStock": true
+        },
+        "_id": "ce683700-dfe1-48f4-9b0c-ff5de0513629"
+      }
+    ],
+    "lastUpdated": "2026-05-30T17:18:10.103Z",
+    "exportProductId": "Product_e50aced2-5109-41bc-9f37-1627553e1179",
+    "_id": "d4776e02-c160-4664-a331-6a93b99d843a",
+    "_createdDate": "2026-05-30T17:18:00.050Z"
+  },
+  {
+    "name": "Sendura",
+    "slug": "sendura",
+    "visible": true,
+    "productType": "physical",
+    "description": "<p>Bright red blush with golden flesh. Juicy, fragrant, and a feast for the eyes - straight from our family farm.</p>",
+    "stock": {
+      "trackInventory": true,
+      "quantity": 100,
+      "inStock": true,
+      "inventoryStatus": "IN_STOCK"
+    },
+    "price": {
+      "currency": "INR",
+      "price": 499,
+      "discountedPrice": 399,
+      "formatted": {
+        "price": "₹499.00",
+        "discountedPrice": "₹399.00"
+      }
+    },
+    "priceData": {
+      "currency": "INR",
+      "price": 499,
+      "discountedPrice": 399,
+      "formatted": {
+        "price": "₹499.00",
+        "discountedPrice": "₹399.00"
+      }
+    },
+    "convertedPriceData": {
+      "currency": "INR",
+      "price": 499,
+      "discountedPrice": 399,
+      "formatted": {
+        "price": "₹499.00",
+        "discountedPrice": "₹399.00"
+      }
+    },
+    "priceRange": {
+      "minValue": 399,
+      "maxValue": 2245.5
+    },
+    "additionalInfoSections": [],
+    "ribbons": [],
+    "media": {
+      "mainMedia": {
+        "thumbnail": {
+          "url": "https://static.wixstatic.com/media/d31ffb_d703c928c5d44d13b30145ada59aaa33~mv2.jpg/v1/fit/w_50,h_50,q_90/file.jpg",
+          "width": 50,
+          "height": 50,
+          "altText": "Sendura - Farm Fresh"
+        },
+        "mediaType": "image",
+        "title": "photo-1591073113125-e46713c829ed.jpg",
+        "image": {
+          "url": "https://static.wixstatic.com/media/d31ffb_d703c928c5d44d13b30145ada59aaa33~mv2.jpg",
+          "width": 800,
+          "height": 800,
+          "altText": "Sendura - Farm Fresh"
+        },
+        "_id": "d31ffb_d703c928c5d44d13b30145ada59aaa33~mv2.jpg"
+      },
+      "items": [
+        {
+          "thumbnail": {
+            "url": "https://static.wixstatic.com/media/d31ffb_d703c928c5d44d13b30145ada59aaa33~mv2.jpg/v1/fit/w_50,h_50,q_90/file.jpg",
+            "width": 50,
+            "height": 50,
+            "altText": "Sendura - Farm Fresh"
+          },
+          "mediaType": "image",
+          "title": "photo-1591073113125-e46713c829ed.jpg",
+          "image": {
+            "url": "https://static.wixstatic.com/media/d31ffb_d703c928c5d44d13b30145ada59aaa33~mv2.jpg",
+            "width": 800,
+            "height": 800,
+            "altText": "Sendura - Farm Fresh"
+          },
+          "_id": "d31ffb_d703c928c5d44d13b30145ada59aaa33~mv2.jpg"
+        }
+      ]
+    },
+    "customTextFields": [],
+    "manageVariants": true,
+    "productOptions": [
+      {
+        "optionType": "drop_down",
+        "name": "Weight",
+        "choices": [
+          {
+            "value": "1 kg",
+            "description": "1 kg",
+            "inStock": true,
+            "visible": true
+          },
+          {
+            "value": "3 kg",
+            "description": "3 kg",
+            "inStock": true,
+            "visible": true
+          },
+          {
+            "value": "5 kg",
+            "description": "5 kg",
+            "inStock": true,
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "productPageUrl": {
+      "base": "https://harshithsunku.wixstudio.com/freshmangos-new",
+      "path": "/product-page/sendura"
+    },
+    "numericId": "1780161480048005",
+    "inventoryItemId": "f6235c45-fe0d-4539-baba-9f660331692f",
+    "discount": {
+      "type": "NONE",
+      "value": 0
+    },
+    "collectionIds": [
+      "9032cae6-35ee-4851-a63e-739fbf667fe1"
+    ],
+    "variants": [
+      {
+        "choices": {
+          "Weight": "1 kg"
+        },
+        "variant": {
+          "priceData": {
+            "currency": "INR",
+            "price": 499,
+            "discountedPrice": 399,
+            "formatted": {
+              "price": "₹499.00",
+              "discountedPrice": "₹399.00"
+            }
+          },
+          "convertedPriceData": {
+            "currency": "INR",
+            "price": 499,
+            "discountedPrice": 399,
+            "formatted": {
+              "price": "₹499.00",
+              "discountedPrice": "₹399.00"
+            }
+          },
+          "weight": 0,
+          "sku": "",
+          "visible": true
+        },
+        "stock": {
+          "trackQuantity": true,
+          "quantity": 50,
+          "inStock": true
+        },
+        "_id": "1d73894a-b1f0-45c7-adfc-e73a44998810"
+      },
+      {
+        "choices": {
+          "Weight": "3 kg"
+        },
+        "variant": {
+          "priceData": {
+            "currency": "INR",
+            "price": 1397.2,
+            "discountedPrice": 1117.2,
+            "formatted": {
+              "price": "₹1,397.20",
+              "discountedPrice": "₹1,117.20"
+            }
+          },
+          "convertedPriceData": {
+            "currency": "INR",
+            "price": 1397.2,
+            "discountedPrice": 1117.2,
+            "formatted": {
+              "price": "₹1,397.20",
+              "discountedPrice": "₹1,117.20"
+            }
+          },
+          "weight": 0,
+          "sku": "",
+          "visible": true
+        },
+        "stock": {
+          "trackQuantity": true,
+          "quantity": 30,
+          "inStock": true
+        },
+        "_id": "6d3fd48e-e644-47f8-b565-998502b68e02"
+      },
+      {
+        "choices": {
+          "Weight": "5 kg"
+        },
+        "variant": {
+          "priceData": {
+            "currency": "INR",
+            "price": 2245.5,
+            "discountedPrice": 1795.5,
+            "formatted": {
+              "price": "₹2,245.50",
+              "discountedPrice": "₹1,795.50"
+            }
+          },
+          "convertedPriceData": {
+            "currency": "INR",
+            "price": 2245.5,
+            "discountedPrice": 1795.5,
+            "formatted": {
+              "price": "₹2,245.50",
+              "discountedPrice": "₹1,795.50"
+            }
+          },
+          "weight": 0,
+          "sku": "",
+          "visible": true
+        },
+        "stock": {
+          "trackQuantity": true,
+          "quantity": 20,
+          "inStock": true
+        },
+        "_id": "a2b8772a-c58a-44cb-a730-11db200fa817"
+      }
+    ],
+    "lastUpdated": "2026-05-30T17:18:09.969Z",
+    "exportProductId": "Product_76518436-178c-4535-8146-6a011b06248b",
+    "_id": "f6235c45-fe0d-4539-baba-9f660331692f",
+    "_createdDate": "2026-05-30T17:18:00.050Z"
+  },
+  {
+    "name": "Totapuri",
+    "slug": "totapuri",
+    "visible": true,
+    "productType": "physical",
+    "description": "<p>Distinctive parrot-beak shape with a tangy-sweet taste. Perfect for juices, pickles, and salads.</p>",
+    "stock": {
+      "trackInventory": true,
+      "quantity": 100,
+      "inStock": true,
+      "inventoryStatus": "IN_STOCK"
+    },
+    "price": {
+      "currency": "INR",
+      "price": 569,
+      "discountedPrice": 399,
+      "formatted": {
+        "price": "₹569.00",
+        "discountedPrice": "₹399.00"
+      }
+    },
+    "priceData": {
+      "currency": "INR",
+      "price": 569,
+      "discountedPrice": 399,
+      "formatted": {
+        "price": "₹569.00",
+        "discountedPrice": "₹399.00"
+      }
+    },
+    "convertedPriceData": {
+      "currency": "INR",
+      "price": 569,
+      "discountedPrice": 399,
+      "formatted": {
+        "price": "₹569.00",
+        "discountedPrice": "₹399.00"
+      }
+    },
+    "priceRange": {
+      "minValue": 399,
+      "maxValue": 2560.5
+    },
+    "additionalInfoSections": [],
+    "ribbons": [],
+    "media": {
+      "items": []
+    },
+    "customTextFields": [],
+    "manageVariants": true,
+    "productOptions": [
+      {
+        "optionType": "drop_down",
+        "name": "Weight",
+        "choices": [
+          {
+            "value": "1 kg",
+            "description": "1 kg",
+            "inStock": true,
+            "visible": true
+          },
+          {
+            "value": "3 kg",
+            "description": "3 kg",
+            "inStock": true,
+            "visible": true
+          },
+          {
+            "value": "5 kg",
+            "description": "5 kg",
+            "inStock": true,
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "productPageUrl": {
+      "base": "https://harshithsunku.wixstudio.com/freshmangos-new",
+      "path": "/product-page/totapuri"
+    },
+    "numericId": "1780161480048003",
+    "inventoryItemId": "adcdffef-4152-496a-8855-778fcb72ca72",
+    "discount": {
+      "type": "NONE",
+      "value": 0
+    },
+    "collectionIds": [
+      "9032cae6-35ee-4851-a63e-739fbf667fe1"
+    ],
+    "variants": [
+      {
+        "choices": {
+          "Weight": "1 kg"
+        },
+        "variant": {
+          "priceData": {
+            "currency": "INR",
+            "price": 569,
+            "discountedPrice": 399,
+            "formatted": {
+              "price": "₹569.00",
+              "discountedPrice": "₹399.00"
+            }
+          },
+          "convertedPriceData": {
+            "currency": "INR",
+            "price": 569,
+            "discountedPrice": 399,
+            "formatted": {
+              "price": "₹569.00",
+              "discountedPrice": "₹399.00"
+            }
+          },
+          "weight": 0,
+          "sku": "",
+          "visible": true
+        },
+        "stock": {
+          "trackQuantity": true,
+          "quantity": 50,
+          "inStock": true
+        },
+        "_id": "6d6f554a-377b-4e46-ae19-de86a8ab91a2"
+      },
+      {
+        "choices": {
+          "Weight": "3 kg"
+        },
+        "variant": {
+          "priceData": {
+            "currency": "INR",
+            "price": 1593.2,
+            "discountedPrice": 1117.2,
+            "formatted": {
+              "price": "₹1,593.20",
+              "discountedPrice": "₹1,117.20"
+            }
+          },
+          "convertedPriceData": {
+            "currency": "INR",
+            "price": 1593.2,
+            "discountedPrice": 1117.2,
+            "formatted": {
+              "price": "₹1,593.20",
+              "discountedPrice": "₹1,117.20"
+            }
+          },
+          "weight": 0,
+          "sku": "",
+          "visible": true
+        },
+        "stock": {
+          "trackQuantity": true,
+          "quantity": 30,
+          "inStock": true
+        },
+        "_id": "7189764b-5d5f-4c2e-a3ca-17a03a004c9a"
+      },
+      {
+        "choices": {
+          "Weight": "5 kg"
+        },
+        "variant": {
+          "priceData": {
+            "currency": "INR",
+            "price": 2560.5,
+            "discountedPrice": 1795.5,
+            "formatted": {
+              "price": "₹2,560.50",
+              "discountedPrice": "₹1,795.50"
+            }
+          },
+          "convertedPriceData": {
+            "currency": "INR",
+            "price": 2560.5,
+            "discountedPrice": 1795.5,
+            "formatted": {
+              "price": "₹2,560.50",
+              "discountedPrice": "₹1,795.50"
+            }
+          },
+          "weight": 0,
+          "sku": "",
+          "visible": true
+        },
+        "stock": {
+          "trackQuantity": true,
+          "quantity": 20,
+          "inStock": true
+        },
+        "_id": "718a97e8-54a4-4f26-b531-3ba98e518fbd"
+      }
+    ],
+    "lastUpdated": "2026-05-30T17:18:02.098Z",
+    "exportProductId": "Product_fa78d3bb-90b4-4c72-a73d-ec52f1db0664",
+    "_id": "adcdffef-4152-496a-8855-778fcb72ca72",
+    "_createdDate": "2026-05-30T17:18:00.050Z"
+  },
+  {
+    "name": "Mallika",
+    "slug": "mallika",
+    "visible": true,
+    "productType": "physical",
+    "description": "<p>A premium hybrid (Neelam x Dasheri). Vibrant orange flesh, honey-sweet with citrusy notes. Excellent for desserts and smoothies.</p>",
+    "stock": {
+      "trackInventory": true,
+      "quantity": 100,
+      "inStock": true,
+      "inventoryStatus": "IN_STOCK"
+    },
+    "price": {
+      "currency": "INR",
+      "price": 499,
+      "discountedPrice": 399,
+      "formatted": {
+        "price": "₹499.00",
+        "discountedPrice": "₹399.00"
+      }
+    },
+    "priceData": {
+      "currency": "INR",
+      "price": 499,
+      "discountedPrice": 399,
+      "formatted": {
+        "price": "₹499.00",
+        "discountedPrice": "₹399.00"
+      }
+    },
+    "convertedPriceData": {
+      "currency": "INR",
+      "price": 499,
+      "discountedPrice": 399,
+      "formatted": {
+        "price": "₹499.00",
+        "discountedPrice": "₹399.00"
+      }
+    },
+    "priceRange": {
+      "minValue": 399,
+      "maxValue": 2245.5
+    },
+    "additionalInfoSections": [],
+    "ribbons": [],
+    "media": {
+      "items": []
+    },
+    "customTextFields": [],
+    "manageVariants": true,
+    "productOptions": [
+      {
+        "optionType": "drop_down",
+        "name": "Weight",
+        "choices": [
+          {
+            "value": "1 kg",
+            "description": "1 kg",
+            "inStock": true,
+            "visible": true
+          },
+          {
+            "value": "3 kg",
+            "description": "3 kg",
+            "inStock": true,
+            "visible": true
+          },
+          {
+            "value": "5 kg",
+            "description": "5 kg",
+            "inStock": true,
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "productPageUrl": {
+      "base": "https://harshithsunku.wixstudio.com/freshmangos-new",
+      "path": "/product-page/mallika"
+    },
+    "numericId": "1780161480048002",
+    "inventoryItemId": "45bb6ad6-ab13-4193-bcb9-8f520002d2f2",
+    "discount": {
+      "type": "NONE",
+      "value": 0
+    },
+    "collectionIds": [
+      "9032cae6-35ee-4851-a63e-739fbf667fe1"
+    ],
+    "variants": [
+      {
+        "choices": {
+          "Weight": "1 kg"
+        },
+        "variant": {
+          "priceData": {
+            "currency": "INR",
+            "price": 499,
+            "discountedPrice": 399,
+            "formatted": {
+              "price": "₹499.00",
+              "discountedPrice": "₹399.00"
+            }
+          },
+          "convertedPriceData": {
+            "currency": "INR",
+            "price": 499,
+            "discountedPrice": 399,
+            "formatted": {
+              "price": "₹499.00",
+              "discountedPrice": "₹399.00"
+            }
+          },
+          "weight": 0,
+          "sku": "",
+          "visible": true
+        },
+        "stock": {
+          "trackQuantity": true,
+          "quantity": 50,
+          "inStock": true
+        },
+        "_id": "a84663b0-2847-47fe-9576-5b307472fddb"
+      },
+      {
+        "choices": {
+          "Weight": "3 kg"
+        },
+        "variant": {
+          "priceData": {
+            "currency": "INR",
+            "price": 1397.2,
+            "discountedPrice": 1117.2,
+            "formatted": {
+              "price": "₹1,397.20",
+              "discountedPrice": "₹1,117.20"
+            }
+          },
+          "convertedPriceData": {
+            "currency": "INR",
+            "price": 1397.2,
+            "discountedPrice": 1117.2,
+            "formatted": {
+              "price": "₹1,397.20",
+              "discountedPrice": "₹1,117.20"
+            }
+          },
+          "weight": 0,
+          "sku": "",
+          "visible": true
+        },
+        "stock": {
+          "trackQuantity": true,
+          "quantity": 30,
+          "inStock": true
+        },
+        "_id": "645d7cb6-9158-4d98-a905-96f96a0646d4"
+      },
+      {
+        "choices": {
+          "Weight": "5 kg"
+        },
+        "variant": {
+          "priceData": {
+            "currency": "INR",
+            "price": 2245.5,
+            "discountedPrice": 1795.5,
+            "formatted": {
+              "price": "₹2,245.50",
+              "discountedPrice": "₹1,795.50"
+            }
+          },
+          "convertedPriceData": {
+            "currency": "INR",
+            "price": 2245.5,
+            "discountedPrice": 1795.5,
+            "formatted": {
+              "price": "₹2,245.50",
+              "discountedPrice": "₹1,795.50"
+            }
+          },
+          "weight": 0,
+          "sku": "",
+          "visible": true
+        },
+        "stock": {
+          "trackQuantity": true,
+          "quantity": 20,
+          "inStock": true
+        },
+        "_id": "cba0d362-d80f-409a-8e50-b8b75d0ee8a4"
+      }
+    ],
+    "lastUpdated": "2026-05-30T17:18:02.098Z",
+    "exportProductId": "Product_ed2cd5c7-118a-44a0-b60c-2ad2fd135d48",
+    "_id": "45bb6ad6-ab13-4193-bcb9-8f520002d2f2",
+    "_createdDate": "2026-05-30T17:18:00.050Z"
+  },
+  {
+    "name": "Banganpalli / Baneshan",
+    "slug": "banganpalli-baneshan",
+    "visible": true,
+    "productType": "physical",
+    "description": "<p>South India's most loved mango. Large, golden-skinned with rich sweet flavor and almost no fiber. A FreshMangos signature variety.</p>",
+    "stock": {
+      "trackInventory": true,
+      "quantity": 100,
+      "inStock": true,
+      "inventoryStatus": "IN_STOCK"
+    },
+    "price": {
+      "currency": "INR",
+      "price": 549,
+      "discountedPrice": 499,
+      "formatted": {
+        "price": "₹549.00",
+        "discountedPrice": "₹499.00"
+      }
+    },
+    "priceData": {
+      "currency": "INR",
+      "price": 549,
+      "discountedPrice": 499,
+      "formatted": {
+        "price": "₹549.00",
+        "discountedPrice": "₹499.00"
+      }
+    },
+    "convertedPriceData": {
+      "currency": "INR",
+      "price": 549,
+      "discountedPrice": 499,
+      "formatted": {
+        "price": "₹549.00",
+        "discountedPrice": "₹499.00"
+      }
+    },
+    "priceRange": {
+      "minValue": 499,
+      "maxValue": 2470.5
+    },
+    "additionalInfoSections": [],
+    "ribbons": [],
+    "media": {
+      "mainMedia": {
+        "thumbnail": {
+          "url": "https://static.wixstatic.com/media/d31ffb_5f7e0d29c06a41f597f9aaad9e3e291d~mv2.jpg/v1/fit/w_50,h_50,q_90/file.jpg",
+          "width": 50,
+          "height": 50,
+          "altText": "Banganpalli / Baneshan - Farm Fresh"
+        },
+        "mediaType": "image",
+        "title": "photo-1591073113125-e46713c829ed.jpg",
+        "image": {
+          "url": "https://static.wixstatic.com/media/d31ffb_5f7e0d29c06a41f597f9aaad9e3e291d~mv2.jpg",
+          "width": 800,
+          "height": 800,
+          "altText": "Banganpalli / Baneshan - Farm Fresh"
+        },
+        "_id": "d31ffb_5f7e0d29c06a41f597f9aaad9e3e291d~mv2.jpg"
+      },
+      "items": [
+        {
+          "thumbnail": {
+            "url": "https://static.wixstatic.com/media/d31ffb_5f7e0d29c06a41f597f9aaad9e3e291d~mv2.jpg/v1/fit/w_50,h_50,q_90/file.jpg",
+            "width": 50,
+            "height": 50,
+            "altText": "Banganpalli / Baneshan - Farm Fresh"
+          },
+          "mediaType": "image",
+          "title": "photo-1591073113125-e46713c829ed.jpg",
+          "image": {
+            "url": "https://static.wixstatic.com/media/d31ffb_5f7e0d29c06a41f597f9aaad9e3e291d~mv2.jpg",
+            "width": 800,
+            "height": 800,
+            "altText": "Banganpalli / Baneshan - Farm Fresh"
+          },
+          "_id": "d31ffb_5f7e0d29c06a41f597f9aaad9e3e291d~mv2.jpg"
+        }
+      ]
+    },
+    "customTextFields": [],
+    "manageVariants": true,
+    "productOptions": [
+      {
+        "optionType": "drop_down",
+        "name": "Weight",
+        "choices": [
+          {
+            "value": "1 kg",
+            "description": "1 kg",
+            "inStock": true,
+            "visible": true
+          },
+          {
+            "value": "3 kg",
+            "description": "3 kg",
+            "inStock": true,
+            "visible": true
+          },
+          {
+            "value": "5 kg",
+            "description": "5 kg",
+            "inStock": true,
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "productPageUrl": {
+      "base": "https://harshithsunku.wixstudio.com/freshmangos-new",
+      "path": "/product-page/banganpalli-baneshan"
+    },
+    "numericId": "1780161480048001",
+    "inventoryItemId": "c3506947-0c87-4678-809a-887b6309acd8",
+    "discount": {
+      "type": "NONE",
+      "value": 0
+    },
+    "collectionIds": [
+      "9032cae6-35ee-4851-a63e-739fbf667fe1"
+    ],
+    "variants": [
+      {
+        "choices": {
+          "Weight": "1 kg"
+        },
+        "variant": {
+          "priceData": {
+            "currency": "INR",
+            "price": 549,
+            "discountedPrice": 499,
+            "formatted": {
+              "price": "₹549.00",
+              "discountedPrice": "₹499.00"
+            }
+          },
+          "convertedPriceData": {
+            "currency": "INR",
+            "price": 549,
+            "discountedPrice": 499,
+            "formatted": {
+              "price": "₹549.00",
+              "discountedPrice": "₹499.00"
+            }
+          },
+          "weight": 0,
+          "sku": "",
+          "visible": true
+        },
+        "stock": {
+          "trackQuantity": true,
+          "quantity": 50,
+          "inStock": true
+        },
+        "_id": "80ef0313-4379-4f28-8872-19c646a0c63d"
+      },
+      {
+        "choices": {
+          "Weight": "3 kg"
+        },
+        "variant": {
+          "priceData": {
+            "currency": "INR",
+            "price": 1537.2,
+            "discountedPrice": 1397.2,
+            "formatted": {
+              "price": "₹1,537.20",
+              "discountedPrice": "₹1,397.20"
+            }
+          },
+          "convertedPriceData": {
+            "currency": "INR",
+            "price": 1537.2,
+            "discountedPrice": 1397.2,
+            "formatted": {
+              "price": "₹1,537.20",
+              "discountedPrice": "₹1,397.20"
+            }
+          },
+          "weight": 0,
+          "sku": "",
+          "visible": true
+        },
+        "stock": {
+          "trackQuantity": true,
+          "quantity": 30,
+          "inStock": true
+        },
+        "_id": "a70b6810-7122-4791-9c5f-edb1c5c81067"
+      },
+      {
+        "choices": {
+          "Weight": "5 kg"
+        },
+        "variant": {
+          "priceData": {
+            "currency": "INR",
+            "price": 2470.5,
+            "discountedPrice": 2245.5,
+            "formatted": {
+              "price": "₹2,470.50",
+              "discountedPrice": "₹2,245.50"
+            }
+          },
+          "convertedPriceData": {
+            "currency": "INR",
+            "price": 2470.5,
+            "discountedPrice": 2245.5,
+            "formatted": {
+              "price": "₹2,470.50",
+              "discountedPrice": "₹2,245.50"
+            }
+          },
+          "weight": 0,
+          "sku": "",
+          "visible": true
+        },
+        "stock": {
+          "trackQuantity": true,
+          "quantity": 20,
+          "inStock": true
+        },
+        "_id": "fd002eef-2205-496f-9add-082d660e6fe5"
+      }
+    ],
+    "lastUpdated": "2026-05-30T17:18:10.085Z",
+    "exportProductId": "Product_fa1f024c-1333-40c8-b7b4-1a89ea73be08",
+    "_id": "c3506947-0c87-4678-809a-887b6309acd8",
+    "_createdDate": "2026-05-30T17:18:00.050Z"
+  },
+  {
+    "name": "Alphonso / Badami / Apoos",
+    "slug": "alphonso-badami-apoos",
+    "visible": true,
+    "productType": "physical",
+    "description": "<p>The King of Mangoes. Saffron-yellow flesh, intense aroma, and a silky, fiberless bite. Hand-picked from our Srinivasapur orchards.</p>",
+    "stock": {
+      "trackInventory": true,
+      "quantity": 100,
+      "inStock": true,
+      "inventoryStatus": "IN_STOCK"
+    },
+    "price": {
+      "currency": "INR",
+      "price": 549,
+      "discountedPrice": 399,
+      "formatted": {
+        "price": "₹549.00",
+        "discountedPrice": "₹399.00"
+      }
+    },
+    "priceData": {
+      "currency": "INR",
+      "price": 549,
+      "discountedPrice": 399,
+      "formatted": {
+        "price": "₹549.00",
+        "discountedPrice": "₹399.00"
+      }
+    },
+    "convertedPriceData": {
+      "currency": "INR",
+      "price": 549,
+      "discountedPrice": 399,
+      "formatted": {
+        "price": "₹549.00",
+        "discountedPrice": "₹399.00"
+      }
+    },
+    "priceRange": {
+      "minValue": 399,
+      "maxValue": 2470.5
+    },
+    "additionalInfoSections": [],
+    "ribbons": [],
+    "media": {
+      "mainMedia": {
+        "thumbnail": {
+          "url": "https://static.wixstatic.com/media/12b050_11584b7567b5451bab7f1fb1450fd69f~mv2.png/v1/fit/w_50,h_50,q_90/file.png",
+          "width": 50,
+          "height": 50
+        },
+        "mediaType": "image",
+        "title": "alphonso.PNG",
+        "image": {
+          "url": "https://static.wixstatic.com/media/12b050_11584b7567b5451bab7f1fb1450fd69f~mv2.png",
+          "width": 925,
+          "height": 654
+        },
+        "_id": "12b050_11584b7567b5451bab7f1fb1450fd69f~mv2.png"
+      },
+      "items": [
+        {
+          "thumbnail": {
+            "url": "https://static.wixstatic.com/media/12b050_11584b7567b5451bab7f1fb1450fd69f~mv2.png/v1/fit/w_50,h_50,q_90/file.png",
+            "width": 50,
+            "height": 50
+          },
+          "mediaType": "image",
+          "title": "alphonso.PNG",
+          "image": {
+            "url": "https://static.wixstatic.com/media/12b050_11584b7567b5451bab7f1fb1450fd69f~mv2.png",
+            "width": 925,
+            "height": 654
+          },
+          "_id": "12b050_11584b7567b5451bab7f1fb1450fd69f~mv2.png"
+        },
+        {
+          "thumbnail": {
+            "url": "https://static.wixstatic.com/media/d31ffb_ecbbcc6f3d734f5ba4545331b4b93336~mv2.jpg/v1/fit/w_50,h_50,q_90/file.jpg",
+            "width": 50,
+            "height": 50,
+            "altText": "Alphonso / Badami / Apoos - Farm Fresh"
+          },
+          "mediaType": "image",
+          "title": "photo-1553279768-865429fa0078.jpg",
+          "image": {
+            "url": "https://static.wixstatic.com/media/d31ffb_ecbbcc6f3d734f5ba4545331b4b93336~mv2.jpg",
+            "width": 800,
+            "height": 800,
+            "altText": "Alphonso / Badami / Apoos - Farm Fresh"
+          },
+          "_id": "d31ffb_ecbbcc6f3d734f5ba4545331b4b93336~mv2.jpg"
+        }
+      ]
+    },
+    "customTextFields": [],
+    "manageVariants": true,
+    "productOptions": [
+      {
+        "optionType": "drop_down",
+        "name": "Weight",
+        "choices": [
+          {
+            "value": "1 kg",
+            "description": "1 kg",
+            "inStock": true,
+            "visible": true
+          },
+          {
+            "value": "3 kg",
+            "description": "3 kg",
+            "inStock": true,
+            "visible": true
+          },
+          {
+            "value": "5 kg",
+            "description": "5 kg",
+            "inStock": true,
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "productPageUrl": {
+      "base": "https://harshithsunku.wixstudio.com/freshmangos-new",
+      "path": "/product-page/alphonso-badami-apoos"
+    },
+    "numericId": "1780161480048000",
+    "inventoryItemId": "e3a8d048-09c7-407c-bd2d-7a05435e6d4a",
+    "discount": {
+      "type": "NONE",
+      "value": 0
+    },
+    "collectionIds": [
+      "9032cae6-35ee-4851-a63e-739fbf667fe1"
+    ],
+    "variants": [
+      {
+        "choices": {
+          "Weight": "1 kg"
+        },
+        "variant": {
+          "priceData": {
+            "currency": "INR",
+            "price": 549,
+            "discountedPrice": 399,
+            "formatted": {
+              "price": "₹549.00",
+              "discountedPrice": "₹399.00"
+            }
+          },
+          "convertedPriceData": {
+            "currency": "INR",
+            "price": 549,
+            "discountedPrice": 399,
+            "formatted": {
+              "price": "₹549.00",
+              "discountedPrice": "₹399.00"
+            }
+          },
+          "weight": 0,
+          "sku": "",
+          "visible": true
+        },
+        "stock": {
+          "trackQuantity": true,
+          "quantity": 50,
+          "inStock": true
+        },
+        "_id": "fe64d9e4-fa9b-4672-be59-e9ee956b1383"
+      },
+      {
+        "choices": {
+          "Weight": "3 kg"
+        },
+        "variant": {
+          "priceData": {
+            "currency": "INR",
+            "price": 1537.2,
+            "discountedPrice": 1117.2,
+            "formatted": {
+              "price": "₹1,537.20",
+              "discountedPrice": "₹1,117.20"
+            }
+          },
+          "convertedPriceData": {
+            "currency": "INR",
+            "price": 1537.2,
+            "discountedPrice": 1117.2,
+            "formatted": {
+              "price": "₹1,537.20",
+              "discountedPrice": "₹1,117.20"
+            }
+          },
+          "weight": 0,
+          "sku": "",
+          "visible": true
+        },
+        "stock": {
+          "trackQuantity": true,
+          "quantity": 30,
+          "inStock": true
+        },
+        "_id": "d62ceccf-313d-4ba5-8dad-f394ac51ed13"
+      },
+      {
+        "choices": {
+          "Weight": "5 kg"
+        },
+        "variant": {
+          "priceData": {
+            "currency": "INR",
+            "price": 2470.5,
+            "discountedPrice": 1795.5,
+            "formatted": {
+              "price": "₹2,470.50",
+              "discountedPrice": "₹1,795.50"
+            }
+          },
+          "convertedPriceData": {
+            "currency": "INR",
+            "price": 2470.5,
+            "discountedPrice": 1795.5,
+            "formatted": {
+              "price": "₹2,470.50",
+              "discountedPrice": "₹1,795.50"
+            }
+          },
+          "weight": 0,
+          "sku": "",
+          "visible": true
+        },
+        "stock": {
+          "trackQuantity": true,
+          "quantity": 20,
+          "inStock": true
+        },
+        "_id": "01500290-b680-439d-a2ef-adb0b9f5335b"
+      }
+    ],
+    "lastUpdated": "2026-06-14T05:36:07.957Z",
+    "exportProductId": "Product_59e6b2af-f636-475e-a0d0-4cc7b46b51eb",
+    "_id": "e3a8d048-09c7-407c-bd2d-7a05435e6d4a",
+    "_createdDate": "2026-05-30T17:18:00.050Z"
+  }
+]

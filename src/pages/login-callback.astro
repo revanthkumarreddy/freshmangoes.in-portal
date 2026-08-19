@@ -121,8 +121,8 @@ import { url } from '~/lib/url';
           window.location.replace(`${base}/account`);
         }, 1200);
       } catch (err: any) {
-        console.error('[FreshMangoes] login-callback error:', err);
-        showError(err?.message ?? 'An unexpected error occurred.');
+        console.error('[FreshMangoes] login-callback error');
+        showError('Secure login could not be completed. Please try again from the login page.');
       }
     }
 

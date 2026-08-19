@@ -68,14 +68,12 @@ export default function CartPage() {
     if (!coupon.trim()) return;
     setBusy('coupon'); setError(null);
     try { await applyCoupon(coupon.trim()); await refresh(); }
-    catch (e) { setError((e as Error).message); }
+    catch (e) { setError('Could not apply that coupon. Please check the code and try again.'); }
     finally { setBusy(null); }
   }
   async function onCheckout() {
-    const localUser = (() => {
-      try { return JSON.parse(window.localStorage.getItem('fm:user') || 'null'); } catch { return null; }
-    })();
-    if (!isLoggedIn() && !localUser) {
+    // Payments require real Wix member auth — localStorage "fm:user" is not trusted
+    if (!isLoggedIn()) {
       window.location.href = `${import.meta.env.BASE_URL || ''}/login?checkout=1`.replace(/\/\/+/g, '/');
       return;
     }
@@ -85,12 +83,16 @@ export default function CartPage() {
     catch (e) { setError((e as Error).message); setCheckingOut(false); }
   }
 
-  if (loading) return <p className="opacity-70">Loading your cart…</p>;
+  const FREE_SHIPPING_AT = 599;
+  const shipProgress = Math.min(100, Math.round((subtotal / FREE_SHIPPING_AT) * 100));
+  const shipRemaining = Math.max(0, FREE_SHIPPING_AT - subtotal);
+
+  if (loading) return <p className="text-[color:var(--color-ink-soft)]">Loading your cart…</p>;
   if (!displayLineItems.length)
     return (
       <div className="text-center py-16">
         <p className="display text-3xl mb-4">Your basket is empty</p>
-        <p className="opacity-70 mb-6">Time to fill it with sunshine.</p>
+        <p className="text-[color:var(--color-ink-soft)] mb-6">Time to fill it with sunshine.</p>
         <a href={`${import.meta.env.BASE_URL}/shop`.replace('//', '/')} className="btn btn-saffron">Browse our mangoes</a>
       </div>
     );
@@ -99,26 +101,26 @@ export default function CartPage() {
     <div className="grid gap-10 lg:grid-cols-[1fr_360px]">
       <div className="space-y-4">
         {displayLineItems.map((li: any) => (
-          <div key={li._id} className="flex gap-4 bg-white rounded-2xl p-4 shadow-sm border border-black/5">
+          <div key={li._id} className="flex gap-4 bg-white/80 rounded-xl p-4 border border-black/6">
             {li.image && (
-              <img src={li.image} alt="" className="w-24 h-24 rounded-xl object-cover" />
+              <img src={li.image} alt="" className="w-24 h-24 rounded-lg object-cover" />
             )}
             <div className="flex-1 min-w-0">
               <h3 className="display text-xl leading-tight">{li.productName?.translated || li.productName?.original}</h3>
               {li.descriptionLines?.length > 0 && (
-                <p className="text-xs opacity-70 mt-1">
+                <p className="text-xs text-[color:var(--color-ink-soft)] mt-1">
                   {li.descriptionLines.map((d: any, i: number) =>
                     <span key={i}>{d.name?.translated}: {d.colorInfo?.translated || d.plainText?.translated}{i < li.descriptionLines.length - 1 ? ' · ' : ''}</span>
                   )}
                 </p>
               )}
               <div className="mt-3 flex items-center gap-3">
-                <div className="inline-flex items-center rounded-full border border-black/15">
+                <div className="inline-flex items-center rounded-lg border border-black/15">
                   <button className="px-3 py-1.5 disabled:opacity-40" disabled={busy === li._id || li.quantity <= 1} onClick={() => onQty(li._id, li.quantity - 1)}>−</button>
                   <span className="px-3 py-1.5 text-sm font-semibold min-w-[2rem] text-center">{li.quantity}</span>
                   <button className="px-3 py-1.5 disabled:opacity-40" disabled={busy === li._id} onClick={() => onQty(li._id, li.quantity + 1)}>+</button>
                 </div>
-                <button className="text-xs opacity-60 hover:opacity-100 hover:text-red-700 underline-offset-2 hover:underline" disabled={busy === li._id} onClick={() => onRemove(li._id)}>
+                <button className="text-xs text-[color:var(--color-ink-soft)] hover:text-red-700 underline-offset-2 hover:underline" disabled={busy === li._id} onClick={() => onRemove(li._id)}>
                   Remove
                 </button>
               </div>
@@ -133,8 +135,19 @@ export default function CartPage() {
         ))}
       </div>
 
-      <aside className="rounded-2xl bg-white border border-black/5 p-6 h-fit shadow-sm sticky top-24">
+      <aside className="rounded-xl bg-white border border-black/6 p-6 h-fit sticky top-24">
         <h3 className="display text-2xl mb-4">Order summary</h3>
+
+        <div className="mb-5 rounded-lg bg-[color:var(--color-saffron-50)] px-4 py-3">
+          <p className="text-xs font-medium mb-2">
+            {shipRemaining > 0
+              ? `Add ${fmt(shipRemaining)} more for free shipping`
+              : 'You’ve unlocked free shipping'}
+          </p>
+          <div className="ship-meter" aria-hidden="true">
+            <div className="ship-meter-fill" style={{ width: `${shipProgress}%` }} />
+          </div>
+        </div>
 
         <form onSubmit={onCoupon} className="flex gap-2 mb-5">
           <input
@@ -142,30 +155,30 @@ export default function CartPage() {
             value={coupon}
             onChange={e => setCoupon(e.target.value.toUpperCase())}
             placeholder="Coupon code"
-            className="flex-1 rounded-full border border-black/15 px-4 py-2 text-sm focus:border-[color:var(--color-ink)] outline-none"
+            className="flex-1 rounded-lg border border-black/15 px-4 py-2 text-sm focus:border-[color:var(--color-leaf-500)] outline-none"
           />
           <button className="btn btn-ghost !py-2 !px-4 text-sm" disabled={busy === 'coupon'}>Apply</button>
         </form>
         {cart?.appliedDiscounts?.length > 0 && (
-          <p className="text-xs text-[color:var(--color-leaf-600)] mb-3">✓ {cart.appliedDiscounts[0].coupon?.code} applied</p>
+          <p className="text-xs text-[color:var(--color-leaf-600)] mb-3">{cart.appliedDiscounts[0].coupon?.code} applied</p>
         )}
 
         <dl className="text-sm space-y-2 mb-6">
-          <div className="flex justify-between"><dt className="opacity-70">Subtotal</dt><dd>{fmt(subtotal)}</dd></div>
+          <div className="flex justify-between"><dt className="text-[color:var(--color-ink-soft)]">Subtotal</dt><dd>{fmt(subtotal)}</dd></div>
           {discount && parseFloat(discount) > 0 && (
             <div className="flex justify-between text-[color:var(--color-leaf-600)]"><dt>Discount</dt><dd>−{fmt(discount)}</dd></div>
           )}
-          <div className="flex justify-between"><dt className="opacity-70">Shipping</dt><dd>{shipping && parseFloat(shipping) > 0 ? fmt(shipping) : 'Calculated at checkout'}</dd></div>
+          <div className="flex justify-between"><dt className="text-[color:var(--color-ink-soft)]">Shipping</dt><dd>{shipping && parseFloat(shipping) > 0 ? fmt(shipping) : 'Calculated at checkout'}</dd></div>
           <div className="border-t border-black/10 pt-3 flex justify-between font-semibold text-base">
             <dt>Total</dt><dd className="display text-2xl">{fmt(total)}</dd>
           </div>
         </dl>
 
         <button className="btn btn-primary w-full" onClick={onCheckout} disabled={checkingOut}>
-          {checkingOut ? 'Redirecting to secure checkout…' : 'Checkout securely →'}
+          {checkingOut ? 'Redirecting to secure checkout…' : 'Checkout securely'}
         </button>
-        {error && <p className="text-xs text-red-700 mt-3">{error}</p>}
-        <p className="text-xs opacity-60 mt-4">Secure payment via Wix Payments. India shipping only. Free over ₹599.</p>
+        {error && <p className="text-xs text-red-700 mt-3" role="alert">Something went wrong. Please try again.</p>}
+        <p className="text-xs text-[color:var(--color-ink-soft)] mt-4">Secure payment. India shipping only. Free over ₹599. First order? Try FRESH10.</p>
       </aside>
     </div>
   );

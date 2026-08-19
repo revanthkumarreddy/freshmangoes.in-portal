@@ -5,48 +5,32 @@ import { fetchAllProducts, priceOf, primaryImage, formatINR } from '~/lib/catalo
 
 const products = await fetchAllProducts();
 const featured = products.slice(0, 6);
+const heroImage = featured[0] ? primaryImage(featured[0]) : `${import.meta.env.BASE_URL}placeholder-mango.svg`.replace(/\/+/g, '/');
 ---
 <Base>
-  <!-- Announcement Bar -->
-  <div class="bg-[color:var(--color-leaf-700)] text-[color:var(--color-cream)] text-center py-2 px-4 text-xs font-medium tracking-wide">
-    <span class="inline-block animate-[pulse_2s_ease-in-out_infinite] mr-1">✨</span> Free express shipping on all orders over ₹599. Limited time only.
-  </div>
-
-  <!-- Hero -->
-  <section class="relative overflow-hidden animate-[fade-in_0.8s_ease-out]">
-    <div class="container-x grid lg:grid-cols-[1.05fr_1fr] gap-12 items-center py-20 lg:py-28">
-      <div class="animate-[slide-up_1s_ease-out]">
-        <p class="eyebrow mb-5">Srinivasapur · Karnataka</p>
-        <h1 class="display text-5xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tight mb-6">
-          The mangoes of <span class="text-[color:var(--color-saffron-500)] italic">summer</span>,<br/>
-          delivered to your door.
-        </h1>
-        <p class="text-base md:text-lg text-[color:var(--color-ink-soft)] leading-relaxed mb-8 max-w-xl">
-          From 2019, our family orchard has hand-picked Karnataka's finest mangoes — Alphonso, Banganpalli, Mallika, Totapuri — and shipped them, sun-ripe and untouched, in carefully cushioned boxes across India.
-        </p>
-        <div class="flex flex-wrap items-center gap-3 mb-10">
-          <a href={url('/shop')} class="btn btn-saffron">Shop the harvest →</a>
-          <a href={url('/about')} class="btn btn-ghost">Our story</a>
-        </div>
-        <div class="flex flex-wrap gap-x-8 gap-y-3 text-sm text-[color:var(--color-ink-soft)]">
-          <div class="flex items-center gap-2"><span aria-hidden="true">🚚</span> Free shipping over ₹599</div>
-          <div class="flex items-center gap-2"><span aria-hidden="true">🌿</span> Naturally tree-ripened</div>
-          <div class="flex items-center gap-2"><span aria-hidden="true">📦</span> Picked &amp; shipped in 24 hrs</div>
-        </div>
-      </div>
-      <div class="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-[color:var(--color-saffron-200)] to-[color:var(--color-saffron-400)] animate-[slide-up_1s_ease-out_0.2s_both]">
-        {featured[0] && (
-          <img
-            src={primaryImage(featured[0])}
-            alt={featured[0].name ?? ''}
-            class="w-full h-full object-cover mix-blend-multiply"
-            loading="eager"
-          />
-        )}
-        <div class="absolute bottom-6 left-6 right-6 backdrop-blur-md bg-white/85 rounded-2xl p-4">
-          <p class="eyebrow">This week's hero</p>
-          <p class="display text-2xl mt-1">{featured[0]?.name || 'Alphonso'}</p>
-        </div>
+  <!-- Full-bleed hero: brand first, one headline, one line, one CTA -->
+  <section class="relative min-h-[100svh] md:min-h-[min(92vh,820px)] overflow-hidden animate-[fade-in_0.8s_ease-out]">
+    <img
+      src={heroImage}
+      alt=""
+      class="absolute inset-0 h-full w-full object-cover object-center"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(14,58,31,0.45)_0%,rgba(20,26,20,0.7)_45%,rgba(20,26,20,0.92)_100%)]"></div>
+    <div class="relative container-x flex min-h-[100svh] md:min-h-[min(92vh,820px)] flex-col justify-end pb-28 pt-24 md:pb-24 md:pt-28">
+      <p class="display text-[clamp(2.75rem,12vw,5.5rem)] md:text-7xl lg:text-8xl text-[color:var(--color-cream)] tracking-tight leading-[0.92] mb-4 animate-[slide-up_0.9s_ease-out]">
+        FreshMangoes
+      </p>
+      <h1 class="text-lg sm:text-xl md:text-2xl font-medium text-[color:var(--color-cream)]/95 max-w-xl leading-snug mb-3 animate-[slide-up_1s_ease-out]">
+        Tree-ripened Karnataka mangoes, farm to door in 24 hours.
+      </h1>
+      <p class="text-sm md:text-base text-[color:var(--color-cream)]/75 max-w-md mb-7 animate-[slide-up_1.05s_ease-out]">
+        Hand-picked from our family orchard in Srinivasapur since 1985. Free shipping over ₹599.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 animate-[slide-up_1.1s_ease-out] w-full sm:w-auto">
+        <a href={url('/shop')} class="btn btn-saffron w-full sm:w-auto min-h-[52px] text-base">Shop the harvest</a>
+        <a href={url('/about')} class="btn btn-ghost w-full sm:w-auto min-h-[52px] !border-white/35 !text-[color:var(--color-cream)] hover:!bg-white/10">Our farm</a>
       </div>
     </div>
   </section>
@@ -58,29 +42,27 @@ const featured = products.slice(0, 6);
         <p class="eyebrow mb-2">The Harvest</p>
         <h2 class="display text-4xl md:text-5xl">A mango for every memory.</h2>
       </div>
-      <a href={url('/shop')} class="hidden md:inline-block text-sm font-semibold hover:text-[color:var(--color-saffron-600)]">See all →</a>
+      <a href={url('/shop')} class="hidden md:inline-block text-sm font-semibold text-[color:var(--color-leaf-600)] hover:text-[color:var(--color-leaf-700)]">See all →</a>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
       {featured.map(p => {
         const { price, salePrice } = priceOf(p);
         return (
-          <a href={url(`/shop/${p.slug}`)} class="group rounded-2xl overflow-hidden bg-white border border-black/5 shadow-sm hover:shadow-xl transition-all">
-            <div class="aspect-[4/5] overflow-hidden bg-[color:var(--color-saffron-100)]">
-              <img src={primaryImage(p)} alt={p.name ?? ''} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <a href={url(`/shop/${p.slug}`)} class="product-tile group">
+            <div class="aspect-[4/5] overflow-hidden bg-[color:var(--color-saffron-100)] mb-4">
+              <img src={primaryImage(p)} alt={p.name ?? ''} class="w-full h-full object-cover" loading="lazy" />
             </div>
-            <div class="p-5">
-              <h3 class="display text-2xl leading-tight">{p.name}</h3>
-              <p class="text-xs opacity-70 line-clamp-2 mt-1 mb-3">{((p as any).description || '').replace(/<[^>]+>/g, '').slice(0, 120)}</p>
-              <p class="flex items-baseline gap-2">
-                {salePrice && <span class="price-strike text-sm">{formatINR(salePrice)}</span>}
-                <span class="font-semibold text-lg">{formatINR(price)}</span>
-              </p>
-            </div>
+            <h3 class="display text-2xl leading-tight">{p.name}</h3>
+            <p class="text-sm text-[color:var(--color-ink-soft)] line-clamp-2 mt-1 mb-2">{((p as any).description || '').replace(/<[^>]+>/g, '').slice(0, 100)}</p>
+            <p class="flex items-baseline gap-2 text-sm">
+              {salePrice && <span class="price-strike">{formatINR(salePrice)}</span>}
+              <span class="font-semibold text-base">{formatINR(price)}</span>
+            </p>
           </a>
         );
       })}
     </div>
-    <div class="text-center mt-10 md:hidden">
+    <div class="text-center mt-12 md:hidden">
       <a href={url('/shop')} class="btn btn-ghost">See all mangoes</a>
     </div>
   </section>
@@ -90,32 +72,26 @@ const featured = products.slice(0, 6);
     <div class="container-x py-20 grid lg:grid-cols-2 gap-12 items-center">
       <div>
         <p class="eyebrow !text-[color:var(--color-saffron-300)] mb-4">Our Orchard</p>
-        <h2 class="display text-4xl md:text-5xl mb-6">Two decades of patient farming.</h2>
+        <h2 class="display text-4xl md:text-5xl mb-6">Four decades of patient farming.</h2>
         <p class="text-lg opacity-90 leading-relaxed max-w-xl">
           Tucked in Srinivasapur, Kolar, our orchards have grown slowly — tree by tree,
           season by season. We don't pluck early. We don't ship hard. Every mango leaves us
           tree-ripened, hand-wrapped, and on its way the same day.
         </p>
-        <a href={url('/about')} class="btn btn-saffron mt-8 inline-flex">Read the story →</a>
+        <a href={url('/about')} class="btn btn-saffron mt-8 inline-flex">Read the story</a>
       </div>
-      <div class="grid grid-cols-3 gap-4">
-        <div class="aspect-square rounded-2xl bg-[color:var(--color-saffron-300)]/20 flex items-center justify-center">
-          <div class="text-center">
-            <div class="display text-5xl">40+</div>
-            <div class="text-xs opacity-80 mt-2 uppercase tracking-wider">Years</div>
-          </div>
+      <div class="grid grid-cols-3 gap-6 text-center">
+        <div>
+          <div class="display text-5xl md:text-6xl">1985</div>
+          <div class="text-xs opacity-80 mt-2 uppercase tracking-wider">First trees</div>
         </div>
-        <div class="aspect-square rounded-2xl bg-[color:var(--color-saffron-300)]/20 flex items-center justify-center">
-          <div class="text-center">
-            <div class="display text-5xl">10</div>
-            <div class="text-xs opacity-80 mt-2 uppercase tracking-wider">Varieties</div>
-          </div>
+        <div>
+          <div class="display text-5xl md:text-6xl">10</div>
+          <div class="text-xs opacity-80 mt-2 uppercase tracking-wider">Varieties</div>
         </div>
-        <div class="aspect-square rounded-2xl bg-[color:var(--color-saffron-300)]/20 flex items-center justify-center">
-          <div class="text-center">
-            <div class="display text-5xl">24h</div>
-            <div class="text-xs opacity-80 mt-2 uppercase tracking-wider">Farm to box</div>
-          </div>
+        <div>
+          <div class="display text-5xl md:text-6xl">24h</div>
+          <div class="text-xs opacity-80 mt-2 uppercase tracking-wider">Farm to box</div>
         </div>
       </div>
     </div>
@@ -123,22 +99,66 @@ const featured = products.slice(0, 6);
 
   <!-- Promise -->
   <section class="container-x py-20">
-    <div class="grid md:grid-cols-3 gap-8 text-center">
+    <div class="grid md:grid-cols-3 gap-12 md:gap-8">
       <div>
-        <div class="text-4xl mb-3">🌳</div>
+        <p class="eyebrow mb-3">01</p>
         <h3 class="display text-2xl mb-2">Tree-ripened</h3>
-        <p class="text-sm opacity-75 leading-relaxed">We never gas. Every fruit ripens on the branch, in the sun.</p>
+        <p class="text-sm text-[color:var(--color-ink-soft)] leading-relaxed">We never gas. Every fruit ripens on the branch, in the sun.</p>
       </div>
       <div>
-        <div class="text-4xl mb-3">📦</div>
+        <p class="eyebrow mb-3">02</p>
         <h3 class="display text-2xl mb-2">Hand-packed</h3>
-        <p class="text-sm opacity-75 leading-relaxed">Cushioned in paper shavings, hand-counted, sealed by us.</p>
+        <p class="text-sm text-[color:var(--color-ink-soft)] leading-relaxed">Cushioned in paper shavings, hand-counted, sealed by us.</p>
       </div>
       <div>
-        <div class="text-4xl mb-3">💛</div>
+        <p class="eyebrow mb-3">03</p>
         <h3 class="display text-2xl mb-2">Loved-it guarantee</h3>
-        <p class="text-sm opacity-75 leading-relaxed">If your box doesn't bring joy, we'll send another. No questions.</p>
+        <p class="text-sm text-[color:var(--color-ink-soft)] leading-relaxed">If your box doesn't bring joy, we'll send another. No questions.</p>
       </div>
     </div>
   </section>
+
+  <!-- Season + newsletter -->
+  <section class="border-y border-black/8 bg-white/40">
+    <div class="container-x py-16 grid lg:grid-cols-2 gap-10 items-center">
+      <div>
+        <p class="eyebrow mb-2">Peak season</p>
+        <h2 class="display text-3xl md:text-4xl mb-3">Know when your variety is ready.</h2>
+        <p class="text-[color:var(--color-ink-soft)] max-w-md">
+          Most varieties peak April–July. Leave your email and we'll tell you when Alphonso, Mallika, and the rest hit their sweetest week.
+        </p>
+      </div>
+      <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3" action={`mailto:freshmangoes.in@gmail.com?subject=${encodeURIComponent('Harvest newsletter signup')}`} method="get">
+        <label class="sr-only" for="newsletter-email">Email</label>
+        <input
+          id="newsletter-email"
+          name="body"
+          type="email"
+          required
+          placeholder="you@email.com"
+          class="flex-1 rounded-xl border border-black/15 bg-white px-4 py-3 text-sm outline-none focus:border-[color:var(--color-leaf-500)]"
+        />
+        <button type="submit" class="btn btn-primary">Notify me</button>
+      </form>
+      <p id="newsletter-thanks" class="hidden text-sm text-[color:var(--color-leaf-600)] lg:col-start-2">You're on the list — we'll write when the harvest peaks.</p>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('newsletter-form') as HTMLFormElement | null;
+    const thanks = document.getElementById('newsletter-thanks');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = (document.getElementById('newsletter-email') as HTMLInputElement)?.value?.trim();
+      if (!email) return;
+      try {
+        const list = JSON.parse(localStorage.getItem('fm:newsletter') || '[]');
+        if (!list.includes(email)) list.push(email);
+        localStorage.setItem('fm:newsletter', JSON.stringify(list));
+      } catch {}
+      form.classList.add('hidden');
+      thanks?.classList.remove('hidden');
+      window.location.href = `mailto:freshmangoes.in@gmail.com?subject=${encodeURIComponent('Harvest newsletter')}&body=${encodeURIComponent(`Please add me to the harvest list: ${email}`)}`;
+    });
+  </script>
 </Base>

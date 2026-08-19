@@ -1,5 +1,7 @@
 ---
 import { url } from '~/lib/url';
+import Logo from '~/components/Logo.astro';
+
 const navLinks = [
   { href: url('/'), label: 'Home' },
   { href: url('/shop'), label: 'Shop' },
@@ -9,56 +11,85 @@ const navLinks = [
 ];
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
-<header class="sticky top-0 z-40 backdrop-blur-md bg-[color:var(--color-cream)]/85 border-b border-black/5">
+<header class="sticky top-0 z-40 border-b border-black/6 bg-[color:var(--color-paper)]/90 backdrop-blur-md">
   <div class="container-x flex items-center justify-between h-[68px]">
-    <a href={url('/')} class="flex items-center gap-2 group" aria-label="FreshMangoes home">
-      <span class="text-2xl" aria-hidden="true">🥭</span>
-      <span class="display text-2xl tracking-tight">FreshMangoes</span>
+    <a href={url('/')} class="relative z-50" aria-label="FreshMangoes home">
+      <Logo />
     </a>
 
-    <nav class="hidden md:flex items-center gap-7 text-sm font-medium">
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium" aria-label="Primary">
       {navLinks.map(l => (
         <a
           href={l.href}
           class:list={[
-            "relative py-1 transition-colors",
-            path === l.href ? "text-[color:var(--color-saffron-600)]" : "hover:text-[color:var(--color-saffron-600)]"
+            'relative py-1 transition-colors',
+            path === l.href ? 'text-[color:var(--color-leaf-600)]' : 'text-[color:var(--color-ink-soft)] hover:text-[color:var(--color-ink)]'
           ]}
         >
           {l.label}
-          {path === l.href && <span class="absolute -bottom-0.5 left-0 right-0 h-px bg-[color:var(--color-saffron-500)]" />}
+          {path === l.href && <span class="absolute -bottom-0.5 left-0 right-0 h-px bg-[color:var(--color-leaf-500)]" />}
         </a>
       ))}
     </nav>
 
     <div class="flex items-center gap-1">
-      <!-- Login btn: icon only on mobile, text on sm+ -->
       <a href={url('/login')} id="login-btn" class="hidden flex-row items-center gap-1.5 btn btn-ghost !py-2 !px-3 text-sm" aria-label="Log in">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4z"/></svg>
         <span class="hidden sm:inline">Log in</span>
       </a>
-      <!-- Account avatar btn (icon-only on mobile, shows "Account" text on sm+) -->
       <a href={url('/account')} id="account-btn" class="hidden flex-row items-center gap-1.5" aria-label="My Account" style="text-decoration:none;">
-        <span id="header-avatar" style="display:inline-flex;align-items:center;justify-content:center;width:2rem;height:2rem;border-radius:50%;background:linear-gradient(135deg,var(--color-saffron-400),var(--color-saffron-500));color:var(--color-ink);font-size:0.8rem;font-weight:700;flex-shrink:0;">M</span>
+        <span id="header-avatar" class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[color:var(--color-leaf-600)] text-[color:var(--color-cream)] text-sm font-semibold">M</span>
         <span class="hidden sm:inline text-sm font-medium">Account</span>
       </a>
-      <!-- Logout: compact icon-only circle on mobile, text pill on sm+ -->
       <button id="logout-btn"
-        class="hidden flex-row items-center justify-center gap-1 rounded-full transition-colors
+        class="hidden flex-row items-center justify-center gap-1 rounded-lg transition-colors
                w-9 h-9 sm:w-auto sm:h-auto sm:py-2 sm:px-3
                text-[color:var(--color-ink-soft)] hover:bg-black/5
                text-sm font-medium"
         aria-label="Log out"
         title="Log out"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/><path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/><path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/></svg>
         <span class="hidden sm:inline">Log out</span>
       </button>
-      <!-- Cart -->
-      <a href={url('/cart')} class="relative flex items-center justify-center w-9 h-9 rounded-full hover:bg-black/5 transition-colors" aria-label="Cart">
-        <span aria-hidden="true" class="text-lg">🛒</span>
-        <span id="cart-count" class="hidden absolute -top-0.5 -right-0.5 text-[10px] font-bold rounded-full bg-[color:var(--color-saffron-400)] text-[color:var(--color-ink)] w-4 h-4 items-center justify-center">0</span>
+      <a href={url('/cart')} class="relative flex items-center justify-center w-9 h-9 rounded-lg hover:bg-black/5 transition-colors" aria-label="Cart">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+        <span id="cart-count" class="hidden absolute -top-0.5 -right-0.5 text-[10px] font-bold rounded-full bg-[color:var(--color-leaf-600)] text-[color:var(--color-cream)] w-4 h-4 items-center justify-center">0</span>
       </a>
+      <button
+        id="nav-toggle"
+        type="button"
+        class="md:hidden relative z-50 flex items-center justify-center w-9 h-9 rounded-lg hover:bg-black/5"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+      >
+        <svg id="nav-icon-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg id="nav-icon-close" class="hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-nav" class="md:hidden fixed inset-0 z-40 hidden" role="dialog" aria-modal="true" aria-label="Menu">
+    <button type="button" id="nav-backdrop" class="absolute inset-0 bg-[color:var(--color-ink)]/45" aria-label="Close menu"></button>
+    <div class="absolute inset-y-0 right-0 w-[min(100%,320px)] bg-[color:var(--color-paper)] shadow-xl flex flex-col pt-[68px]">
+      <nav class="flex-1 overflow-y-auto px-6 py-4 flex flex-col gap-1" aria-label="Mobile">
+        {navLinks.map(l => (
+          <a
+            href={l.href}
+            class:list={[
+              'py-3.5 text-lg font-medium border-b border-black/6',
+              path === l.href ? 'text-[color:var(--color-leaf-600)]' : 'text-[color:var(--color-ink)]'
+            ]}
+          >
+            {l.label}
+          </a>
+        ))}
+      </nav>
+      <div class="px-6 py-5 border-t border-black/8 space-y-3" style="padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));">
+        <a href={url('/shop')} class="btn btn-saffron w-full">Shop the harvest</a>
+        <a href="https://wa.me/919844763416" class="btn btn-ghost w-full" target="_blank" rel="noopener noreferrer">WhatsApp us</a>
+      </div>
     </div>
   </div>
 </header>
@@ -72,8 +103,27 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
     const logoutBtn   = document.getElementById('logout-btn')  as HTMLButtonElement | null;
     const cartCountEl = document.getElementById('cart-count');
     const headerAvatar = document.getElementById('header-avatar');
+    const navToggle = document.getElementById('nav-toggle') as HTMLButtonElement | null;
+    const mobileNav = document.getElementById('mobile-nav');
+    const iconOpen = document.getElementById('nav-icon-open');
+    const iconClose = document.getElementById('nav-icon-close');
+    const navBackdrop = document.getElementById('nav-backdrop');
 
-    /** Sync cart badge count */
+    function setMenuOpen(open: boolean) {
+      mobileNav?.classList.toggle('hidden', !open);
+      document.body.classList.toggle('overflow-hidden', open);
+      navToggle?.setAttribute('aria-expanded', String(open));
+      navToggle?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      iconOpen?.classList.toggle('hidden', open);
+      iconClose?.classList.toggle('hidden', !open);
+    }
+
+    navToggle?.addEventListener('click', () => {
+      const currentlyHidden = mobileNav?.classList.contains('hidden');
+      setMenuOpen(!!currentlyHidden);
+    });
+    navBackdrop?.addEventListener('click', () => setMenuOpen(false));
+
     async function refreshCart() {
       try {
         const cart = await wixClient.currentCart.getCurrentCart();
@@ -87,20 +137,13 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
           cartCountEl.classList.add('hidden');
           cartCountEl.classList.remove('inline-flex');
         }
-      } catch (err) {
-        console.error('[Header] refreshCart failed:', err);
+      } catch {
+        /* ignore */
       }
     }
 
-    /** Sync Login / Account / Logout button visibility */
     function refreshAuth() {
-      // Check both Wix OAuth login and local login
-      const wixLoggedIn = isLoggedIn();
-      const localUser = (() => {
-        try { return JSON.parse(window.localStorage.getItem('fm:user') || 'null'); } catch { return null; }
-      })();
-      const loggedIn = wixLoggedIn || !!localUser;
-
+      const loggedIn = isLoggedIn();
       if (loginBtn && accountBtn && logoutBtn) {
         if (loggedIn) {
           loginBtn.classList.add('hidden');
@@ -108,9 +151,8 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
           accountBtn.classList.add('flex');
           logoutBtn.classList.remove('hidden');
           logoutBtn.classList.add('flex');
-          // Set avatar initial from stored member data or local user
           try {
-            const name = window.localStorage.getItem('wix:member_name') || localUser?.name;
+            const name = window.localStorage.getItem('wix:member_name');
             if (headerAvatar && name) {
               headerAvatar.textContent = name.charAt(0).toUpperCase();
             }
@@ -138,24 +180,23 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
     logoutBtn?.addEventListener('click', async (e) => {
       e.preventDefault();
       try {
-        // Clear local auth first
         window.localStorage.removeItem('fm:user');
+        window.localStorage.removeItem('fm:users');
         window.localStorage.removeItem('wix:member_name');
-        
-        // Clear Wix auth if present
+
         if (isLoggedIn()) {
           const { logoutUrl } = await wixClient.auth.logout(window.location.href);
           window.localStorage.removeItem('wix:tokens');
           window.dispatchEvent(new Event('auth:updated'));
-          window.location.href = logoutUrl;
-          return;
+          if (logoutUrl && /^https:\/\//i.test(logoutUrl)) {
+            window.location.href = logoutUrl;
+            return;
+          }
         }
 
         window.dispatchEvent(new Event('auth:updated'));
         window.location.href = (import.meta.env.BASE_URL || '/').replace(/\/$/, '') + '/';
-      } catch (err) {
-        console.error('[FreshMangoes] logout error:', err);
-        // Fallback clear
+      } catch {
         window.localStorage.removeItem('wix:tokens');
         window.dispatchEvent(new Event('auth:updated'));
         window.location.href = (import.meta.env.BASE_URL || '/').replace(/\/$/, '') + '/';

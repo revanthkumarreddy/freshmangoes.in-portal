@@ -2,4 +2,10 @@ User-agent: *
 Allow: /
 Disallow: /cart
 Disallow: /thank-you
+Disallow: /account
+Disallow: /login
+Disallow: /login-callback
+Disallow: /admin
+Disallow: /admin/
+
 Sitemap: https://freshmangoes.com/sitemap-index.xml

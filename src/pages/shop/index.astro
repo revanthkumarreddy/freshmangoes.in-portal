@@ -4,42 +4,93 @@ import { url } from '~/lib/url';
 import { fetchAllProducts, priceOf, primaryImage, formatINR } from '~/lib/catalog';
 
 const products = await fetchAllProducts();
+
+function varietyKey(name: string) {
+  const n = name.toLowerCase();
+  if (n.includes('alphonso') || n.includes('hapus')) return 'Alphonso';
+  if (n.includes('bangan')) return 'Banganpalli';
+  if (n.includes('mallika')) return 'Mallika';
+  if (n.includes('totapuri') || n.includes('tota')) return 'Totapuri';
+  if (n.includes('sendura') || n.includes('sindhura')) return 'Sendura';
+  if (n.includes('kesar')) return 'Kesar';
+  if (n.includes('dasheri') || n.includes('daseri')) return 'Dasheri';
+  return 'Other';
+}
+
+const varieties = ['All', ...Array.from(new Set(products.map(p => varietyKey(p.name || 'Other')))).sort()];
 ---
 <Base title="Shop all mangoes — FreshMangoes" description="Browse our hand-picked Karnataka mangoes. Alphonso, Banganpalli, Mallika, Totapuri and more. Free shipping over ₹599.">
-  <section class="container-x py-16">
-    <div class="max-w-3xl mb-12">
+  <section class="container-x py-16 pb-28 md:pb-16">
+    <div class="max-w-3xl mb-10">
       <p class="eyebrow mb-3">The Shop</p>
       <h1 class="display text-5xl md:text-6xl tracking-tight">Choose your mango.</h1>
-      <p class="mt-4 text-lg opacity-80 max-w-xl">
-        Ten varieties from our family orchard in Srinivasapur. Pick your size — 1 kg, 3 kg or 5 kg —
-        and we'll ship within 24 hours.
+      <p class="mt-4 text-lg text-[color:var(--color-ink-soft)] max-w-xl">
+        Varieties from our family orchard in Srinivasapur. Pick your size — we'll ship within 24 hours.
       </p>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <div id="shop-filters" class="flex flex-wrap gap-2 mb-10" role="group" aria-label="Filter by variety">
+      {varieties.map((v, i) => (
+        <button
+          type="button"
+          data-filter={v}
+          class:list={[
+            'filter-pill',
+            i === 0 && 'filter-pill-active',
+          ]}
+        >
+          {v}
+        </button>
+      ))}
+    </div>
+
+    <div id="shop-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12">
       {products.map(p => {
         const { price, salePrice } = priceOf(p);
         const onSale = !!salePrice;
+        const variety = varietyKey(p.name || 'Other');
         return (
-          <a href={url(`/shop/${p.slug}`)} class="group rounded-2xl overflow-hidden bg-white border border-black/5 shadow-sm hover:shadow-xl transition-all">
-            <div class="relative aspect-[4/5] overflow-hidden bg-[color:var(--color-saffron-100)]">
-              <img src={primaryImage(p)} alt={p.name ?? ''} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <a
+            href={url(`/shop/${p.slug}`)}
+            class="product-tile group"
+            data-variety={variety}
+          >
+            <div class="relative aspect-[4/5] overflow-hidden bg-[color:var(--color-saffron-100)] mb-4">
+              <img src={primaryImage(p)} alt={p.name ?? ''} class="w-full h-full object-cover" loading="lazy" />
               {onSale && (
-                <span class="absolute top-3 left-3 bg-[color:var(--color-ink)] text-[color:var(--color-cream)] text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Sale</span>
+                <span class="absolute top-3 left-3 bg-[color:var(--color-leaf-700)] text-[color:var(--color-cream)] text-[10px] font-bold px-2 py-1 uppercase tracking-wider">Sale</span>
               )}
             </div>
-            <div class="p-5">
-              <h2 class="display text-2xl leading-tight">{p.name}</h2>
-              <p class="text-xs opacity-70 line-clamp-2 mt-1 mb-3 min-h-[2.4em]">{((p as any).description || '').replace(/<[^>]+>/g, '').slice(0, 120)}</p>
-              <p class="flex items-baseline gap-2">
-                {salePrice && <span class="price-strike text-sm">{formatINR(salePrice)}</span>}
-                <span class="font-semibold text-lg">{formatINR(price)}</span>
-                <span class="text-xs opacity-60 ml-auto">View →</span>
-              </p>
-            </div>
+            <h2 class="display text-2xl leading-tight">{p.name}</h2>
+            <p class="text-sm text-[color:var(--color-ink-soft)] line-clamp-2 mt-1 mb-2 min-h-[2.5em]">{((p as any).description || '').replace(/<[^>]+>/g, '').slice(0, 100)}</p>
+            <p class="flex items-baseline gap-2 text-sm">
+              {salePrice && <span class="price-strike">{formatINR(salePrice)}</span>}
+              <span class="font-semibold text-base">{formatINR(price)}</span>
+            </p>
           </a>
         );
       })}
     </div>
+    <p id="shop-empty" class="hidden text-center py-16 text-[color:var(--color-ink-soft)]">No mangoes in this variety right now.</p>
   </section>
+
+  <script>
+    const filters = document.getElementById('shop-filters');
+    const grid = document.getElementById('shop-grid');
+    const empty = document.getElementById('shop-empty');
+
+    filters?.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('button[data-filter]') as HTMLButtonElement | null;
+      if (!btn || !filters || !grid) return;
+      const value = btn.dataset.filter || 'All';
+      filters.querySelectorAll('button').forEach(b => b.classList.toggle('filter-pill-active', b === btn));
+      let visible = 0;
+      grid.querySelectorAll<HTMLElement>('[data-variety]').forEach(tile => {
+        const show = value === 'All' || tile.dataset.variety === value;
+        tile.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      empty?.classList.toggle('hidden', visible > 0);
+    });
+  </script>
 </Base>
