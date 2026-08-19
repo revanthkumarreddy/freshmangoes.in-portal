@@ -1,7 +1,6 @@
 ---
 import { url } from '~/lib/url';
 import Logo from '~/components/Logo.astro';
-import LocationPicker from '~/components/LocationPicker';
 
 const navLinks = [
   { href: url('/'), label: 'Home' },
@@ -70,7 +69,6 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
       </button>
     </div>
   </div>
-  <LocationPicker client:load />
 
   <div id="mobile-nav" class="md:hidden fixed inset-0 z-40 hidden" role="dialog" aria-modal="true" aria-label="Menu">
     <button type="button" id="nav-backdrop" class="absolute inset-0 bg-[color:var(--color-ink)]/45" aria-label="Close menu"></button>

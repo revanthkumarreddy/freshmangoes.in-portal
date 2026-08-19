@@ -14,7 +14,14 @@ import {
   type DeliveryLocation,
 } from '~/lib/delivery';
 
-export default function LocationPicker() {
+type Props = {
+  /** Show the “Deliver to” bar (product page only). */
+  showBar?: boolean;
+  /** Auto-open the sheet once if no PIN is saved yet. */
+  autoPrompt?: boolean;
+};
+
+export default function LocationPicker({ showBar = false, autoPrompt = false }: Props) {
   const [loc, setLoc] = useState<DeliveryLocation | null>(() => getSavedLocation());
   const [open, setOpen] = useState(false);
   const [pin, setPin] = useState(() => getSavedLocation()?.pincode || '');
@@ -46,16 +53,16 @@ export default function LocationPicker() {
   }, []);
 
   useEffect(() => {
-    if (loc) return;
+    if (!autoPrompt || loc) return;
     try {
       if (sessionStorage.getItem('fm:loc_prompted')) return;
       sessionStorage.setItem('fm:loc_prompted', '1');
     } catch {
       return;
     }
-    const t = window.setTimeout(() => setOpen(true), 700);
+    const t = window.setTimeout(() => setOpen(true), 500);
     return () => window.clearTimeout(t);
-  }, [loc]);
+  }, [autoPrompt, loc]);
 
   useEffect(() => {
     document.body.classList.toggle('overflow-hidden', open);
@@ -72,7 +79,6 @@ export default function LocationPicker() {
   function onGps() {
     setError('');
     setHint('');
-    // Start GPS in the same tap — required for iOS/Android Chrome.
     const geo = requestBrowserLocation();
     setBusy('gps');
     void geo
@@ -108,20 +114,22 @@ export default function LocationPicker() {
 
   return (
     <>
-      <button type="button" className="loc-bar" onClick={() => setOpen(true)} aria-haspopup="dialog" aria-expanded={open}>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 text-[color:var(--color-leaf-600)]" aria-hidden="true">
-          <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-          <circle cx="12" cy="10" r="3" />
-        </svg>
-        <span className="flex-1 min-w-0 text-left">
-          <span className="block text-[10px] uppercase tracking-wider text-[color:var(--color-ink-soft)] leading-none">Deliver to</span>
-          <span className="block truncate text-xs font-semibold leading-tight mt-0.5">
-            {label}
-            {loc && !loc.serviceable ? ' · unavailable' : ''}
+      {showBar && (
+        <button type="button" className="loc-bar" onClick={() => setOpen(true)} aria-haspopup="dialog" aria-expanded={open}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 text-[color:var(--color-leaf-600)]" aria-hidden="true">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          <span className="flex-1 min-w-0 text-left">
+            <span className="block text-[10px] uppercase tracking-wider text-[color:var(--color-ink-soft)] leading-none">Deliver to</span>
+            <span className="block truncate text-xs font-semibold leading-tight mt-0.5">
+              {label}
+              {loc && !loc.serviceable ? ' · unavailable' : ''}
+            </span>
           </span>
-        </span>
-        <span className="text-xs font-semibold text-[color:var(--color-leaf-600)] shrink-0">{loc ? 'Change' : 'Set PIN'}</span>
-      </button>
+          <span className="text-xs font-semibold text-[color:var(--color-leaf-600)] shrink-0">{loc ? 'Change' : 'Set PIN'}</span>
+        </button>
+      )}
 
       {open && (
         <div className="loc-sheet" role="dialog" aria-modal="true" aria-labelledby="loc-title">

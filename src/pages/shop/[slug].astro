@@ -12,6 +12,7 @@ import {
   variantsOf,
 } from '~/lib/catalog';
 import PincodeChecker from '~/components/PincodeChecker';
+import LocationPicker from '~/components/LocationPicker';
 import { sanitizeHtml, stripHtml } from '~/lib/sanitize';
 
 export async function getStaticPaths() {
@@ -59,7 +60,9 @@ const jsonLd = {
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </Fragment>
 
-  <nav class="container-x pt-6 text-xs text-[color:var(--color-ink-soft)]">
+  <LocationPicker client:load showBar={true} autoPrompt={true} />
+
+  <nav class="container-x pt-4 text-xs text-[color:var(--color-ink-soft)]">
     <a href={url('/')} class="hover:text-[color:var(--color-ink)]">Home</a>
     <span class="mx-1.5 opacity-50">/</span>
     <a href={url('/shop')} class="hover:text-[color:var(--color-ink)]">Shop</a>
