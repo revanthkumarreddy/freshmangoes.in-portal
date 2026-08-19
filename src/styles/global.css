@@ -562,9 +562,9 @@
   .loc-sheet {
     position: fixed;
     inset: 0;
-    z-index: 60;
+    z-index: 80;
     display: flex;
-    align-items: flex-end;
+    align-items: stretch;
     justify-content: center;
   }
   .loc-sheet-backdrop {
@@ -577,22 +577,39 @@
     position: relative;
     width: 100%;
     max-width: 480px;
-    max-height: min(88dvh, 640px);
+    height: 100%;
+    max-height: 100%;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     background: var(--color-paper);
-    border-radius: 1.25rem 1.25rem 0 0;
-    padding: 0.75rem 1.25rem calc(1.25rem + env(safe-area-inset-bottom, 0px));
+    padding: calc(0.85rem + env(safe-area-inset-top, 0px)) 1.25rem calc(1.5rem + env(safe-area-inset-bottom, 0px));
   }
   @media (min-width: 768px) {
     .loc-sheet { align-items: center; }
-    .loc-sheet-panel { border-radius: 1.25rem; padding: 1.5rem; max-height: 80vh; }
+    .loc-sheet-panel {
+      height: auto;
+      max-height: 80vh;
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+    }
   }
   .loc-sheet-handle {
-    width: 40px;
-    height: 4px;
-    border-radius: 999px;
-    background: rgba(20, 26, 20, 0.15);
-    margin: 0.15rem auto 0.85rem;
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .loc-sheet-handle {
+      display: block;
+      width: 40px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(20, 26, 20, 0.15);
+      margin: 0.15rem auto 0.85rem;
+    }
+  }
+  .loc-gps-btn {
+    min-height: 52px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
   .loc-or {
     display: flex;

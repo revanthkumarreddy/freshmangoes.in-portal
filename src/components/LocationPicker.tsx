@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import {
   DELIVERY_EVENT,
   OPEN_LOCATION_EVENT,
+  GpsNeedsPinError,
+  completeFromCoords,
   expectedDeliveryLabel,
   getRecentPincodes,
   getSavedLocation,
   gpsErrorMessage,
-  resolveFromGps,
+  requestBrowserLocation,
   resolvePincode,
   saveLocation,
   type DeliveryLocation,
@@ -18,7 +20,9 @@ export default function LocationPicker() {
   const [pin, setPin] = useState(() => getSavedLocation()?.pincode || '');
   const [busy, setBusy] = useState<'idle' | 'gps' | 'pin'>('idle');
   const [error, setError] = useState('');
-  const [recent, setRecent] = useState<string[]>([]);
+  const [hint, setHint] = useState('');
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [recent, setRecent] = useState<string[]>(() => getRecentPincodes());
 
   useEffect(() => {
     const saved = getSavedLocation();
@@ -65,16 +69,25 @@ export default function LocationPicker() {
     setOpen(false);
   }
 
-  async function onGps() {
-    setBusy('gps');
+  function onGps() {
     setError('');
-    try {
-      await apply(await resolveFromGps());
-    } catch (err) {
-      setError(gpsErrorMessage(err));
-    } finally {
-      setBusy('idle');
-    }
+    setHint('');
+    // Start GPS in the same tap — required for iOS/Android Chrome.
+    const geo = requestBrowserLocation();
+    setBusy('gps');
+    void geo
+      .then((pos) => completeFromCoords(pos.coords.latitude, pos.coords.longitude))
+      .then((next) => apply(next))
+      .catch((err) => {
+        if (err instanceof GpsNeedsPinError) {
+          setHint(err.message);
+          setSuggestions(err.suggestions);
+          setError('');
+        } else {
+          setError(gpsErrorMessage(err));
+        }
+      })
+      .finally(() => setBusy('idle'));
   }
 
   async function onCheck(code = pin) {
@@ -125,15 +138,15 @@ export default function LocationPicker() {
               </button>
             </div>
 
-            <button type="button" className="btn btn-primary w-full min-h-[48px] gap-2" onClick={onGps} disabled={busy !== 'idle'}>
+            <button type="button" className="btn btn-primary loc-gps-btn w-full gap-2" onClick={onGps} disabled={busy === 'gps'}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <circle cx="12" cy="12" r="3" />
                 <path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
               </svg>
-              {busy === 'gps' ? 'Detecting GPS…' : 'Use current location'}
+              {busy === 'gps' ? 'Detecting location…' : 'Use current location'}
             </button>
             <p className="text-[11px] text-[color:var(--color-ink-soft)] text-center mt-2 mb-1">
-              Allow location once — we’ll convert GPS to your 6-digit PIN.
+              Tap Allow when your phone asks. If it fails, type the PIN — GPS needs HTTPS and permission.
             </p>
 
             <div className="loc-or">or enter PIN manually</div>
@@ -164,11 +177,17 @@ export default function LocationPicker() {
               </button>
             </form>
 
-            {recent.length > 0 && (
+            {hint && !error && (
+              <p className="mt-3 text-sm text-[color:var(--color-leaf-700)]" role="status">{hint}</p>
+            )}
+
+            {(suggestions.length > 0 || recent.length > 0) && (
               <div className="mt-4">
-                <p className="text-[11px] uppercase tracking-wider text-[color:var(--color-ink-soft)] mb-2">Recent PINs</p>
+                <p className="text-[11px] uppercase tracking-wider text-[color:var(--color-ink-soft)] mb-2">
+                  {suggestions.length > 0 ? 'Suggested PINs near you' : 'Recent PINs'}
+                </p>
                 <div className="flex flex-wrap gap-2">
-                  {recent.map((r) => (
+                  {(suggestions.length > 0 ? suggestions : recent).map((r) => (
                     <button key={r} type="button" className="px-3 py-1.5 rounded-full border border-black/12 text-xs font-semibold" onClick={() => onCheck(r)}>
                       {r}
                     </button>
