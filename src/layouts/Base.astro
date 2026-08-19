@@ -31,7 +31,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     <meta name="theme-color" content="#14502B" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self' mailto:; img-src 'self' data: https: blob:; font-src 'self' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; connect-src 'self' https://*.wixapis.com https://*.wix.com https://*.wixsite.com; frame-src https://*.wix.com https://*.wixsite.com;"
+      content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self' mailto:; img-src 'self' data: https: blob:; font-src 'self' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; connect-src 'self' https://*.wixapis.com https://*.wix.com https://*.wixsite.com https://api.postalpincode.in https://*.bigdatacloud.net; frame-src https://*.wix.com https://*.wixsite.com;"
     />
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}/favicon.svg`.replace('//', '/')} />
     <link rel="canonical" href={canonical} />
